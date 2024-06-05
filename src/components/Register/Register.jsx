@@ -33,6 +33,7 @@ const Register = () => {
         return dispatch(register(formData));
     }
   };
+
   const onFinish = (values) => {
     dispatch(register(values));
   };
