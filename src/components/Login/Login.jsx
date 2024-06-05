@@ -6,7 +6,10 @@ const Login = () => {
     const [formData, setFormData] = useState({
         email:'',
         password:''
+      
     })
+
+    
     const {email,password} = formData
     const onChange = (e)=>{
         setFormData((prevState)=> ({
@@ -30,3 +33,5 @@ const Login = () => {
   )
 }
 export default Login
+
+
