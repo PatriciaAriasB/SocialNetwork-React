@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from '../../features/auth/authSlice';
-import { Form, Input, Button, Typography, Row, Col } from 'antd';
+import { register} from '../../features/auth/authSlice';
+import { Form, Input,notification, Button, Typography, Row, Col } from 'antd';
 import './Register.scss';
 
 const { Title } = Typography;
@@ -22,16 +22,27 @@ const Register = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      return notification.error({
+        message: "Error",
+        description: "Passwords do not match",
+      });
+    } else {
+        return dispatch(register(formData));
+    }
+  };
   const onFinish = (values) => {
     dispatch(register(values));
   };
 
   return (
+  
     <Row justify="center" align="middle" style={{ minHeight: '80vh' }}>
       <Col span={8}>
         <Title level={2} style={{ textAlign: 'center', marginBottom: '2rem' }}>Registro</Title>
-        <Form name="register" onFinish={onFinish}>
+        <Form onSubmit={onSubmit} name="register" onFinish={onFinish}>
           <Form.Item name="name" rules={[{ required: true, message: 'Por favor ingresa tu nombre' }]}>
             <Input placeholder="Nombre" value={name} onChange={onChange} />
           </Form.Item>
@@ -42,7 +53,7 @@ const Register = () => {
             <Input.Password placeholder="Contraseña" value={password} onChange={onChange} />
             </Form.Item>
             <Form.Item name="password2" rules={[{ required: true, message: 'Por favor repite tu contraseña' }]}>  
-            <Input.Password2 placeholder=" Repite Contraseña" value={password2} onChange={onChange} />
+            <Input.Password placeholder=" Repite Contraseña" value={password2} onChange={onChange} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
