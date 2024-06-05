@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import postsService from "./postsService";
+import { act } from "react";
 
 const initialState = {
   posts: [],
@@ -16,23 +17,31 @@ export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
 });
 
 export const getPostById = createAsyncThunk("posts/getPostById", async (id) => {
-    try {
-      return await postsService.getById(id);
-    } catch (error) {
-      console.error(error);
-    }
-  });
+  try {
+    return await postsService.getById(id);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const createPost = createAsyncThunk("posts/createPost", async (post) => {
+  try {
+    return await postsService.createPost(post);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 export const postsSlice = createSlice({
-    name: "posts",
-    initialState,
-    reducers: {
-        reset: (state) => {
-          state.isLoading = false;
-        },
-      },
-    extraReducers: (builder) => {
-      builder
+  name: "posts",
+  initialState,
+  reducers: {
+    reset: (state) => {
+      state.isLoading = false;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
       .addCase(getAllPosts.fulfilled, (state, action) => {
         state.posts = action.payload;
         state.isLoading = false;
@@ -40,12 +49,14 @@ export const postsSlice = createSlice({
       .addCase(getAllPosts.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getPostById.fulfilled, (state,action) => {
+      .addCase(getPostById.fulfilled, (state, action) => {
         state.post = action.payload;
-        state.isLoading = false
       })
-    },
-  });
-  
-  export const { reset } = postsSlice.actions;
-  export default postsSlice.reducer;
+      .addCase(createPost.fulfilled, (state, action) =>{
+        state.post = action.payload;
+      })
+  },
+});
+
+export const { reset } = postsSlice.actions;
+export default postsSlice.reducer;

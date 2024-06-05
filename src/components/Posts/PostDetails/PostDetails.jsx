@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPostById } from "../../../features/postsSlice";
+import { getPostById } from "../../../features/posts/postsSlice";
 
 const PostDetail = () => {
   const { id } = useParams();
