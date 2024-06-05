@@ -5,14 +5,10 @@ import { createPost, getAllPosts, reset } from "../../features/posts/postsSlice"
 const Posts = () => {
     const { isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.auth);
 
     const initialValue = {
         text: "",
         image: "",
-        userId: user._id,
-        likes: [],
-        commentId: []
     }
 
     const [formPost, setFormPost] = useState(initialValue);
@@ -35,7 +31,7 @@ const Posts = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        return dispatch(createPost(formPost));
+        dispatch(createPost(formPost));
     };
 
     return (
