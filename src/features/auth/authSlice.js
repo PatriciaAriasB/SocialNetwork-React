@@ -17,9 +17,16 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
 });
-export const register = createAsyncThunk('auth/register',async(user)=>{
-console.log(user)
-})
+export const register = createAsyncThunk(
+  "auth/register",
+  async (user) => {
+    try {
+      return await authService.register(user);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
 export const login = createAsyncThunk("auth/login", async (user) => {
     try {
       return await authService.login(user);
@@ -28,7 +35,5 @@ export const login = createAsyncThunk("auth/login", async (user) => {
     }
   });
 
-
-  
 export default authSlice.reducer;
 
