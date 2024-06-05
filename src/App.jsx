@@ -7,6 +7,7 @@ import Posts from "./components/Posts/Posts";
 import PostDetails from "./components/Posts/PostDetails/PostDetails";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/post/:id" element={<PostDetails />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>
