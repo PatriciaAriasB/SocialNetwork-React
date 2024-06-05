@@ -1,11 +1,23 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Post from './Post/Post'
-
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPosts,reset } from "../../features/postsSlice";
 const Posts = () => {
+  const { isLoading } = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+   dispatch(getAllPosts());
+  }, []);
+
+  if (isLoading) {
+    return <h1>Cargando posts...</h1>;
+  }
+
   return (
     <div>
-        Posts
-    <Post />
+        <h1>Posts</h1>
+        <Post/>
     </div>
   )
 }
