@@ -1,12 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/auth/authSlice";
 import React, { useState, useEffect } from "react";
 
 const Header = () => {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+
+  const onLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    navigate("/login");
+  };
+
   const [text, setText] = useState("");
 
   const handleChange = (e) => {
@@ -32,7 +39,8 @@ const Header = () => {
             {
               user ? (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/profile">Profile</Link>
+                  <span onClick={onLogout}>Logout</span>
+                  <span><Link to="/profile" >{user.name}</Link> </span>
                 </li>
               ) : (
                 <>
@@ -53,4 +61,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;
