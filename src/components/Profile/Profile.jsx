@@ -35,6 +35,8 @@ const Profile = () => {
         dispatch(createPost(formPost));
     };
 
+    
+
     return (
         <>
             <div className="card">
