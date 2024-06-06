@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
+import React, { useState, useEffect } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,6 +13,16 @@ const Header = () => {
     dispatch(logout());
     navigate("/login");
   };
+
+  const [text, setText] = useState("");
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+    if (e.key === "Enter") {
+      navigate('/search/'+ text)
+    }
+  };
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,6 +55,7 @@ const Header = () => {
             }
           </ul>
         </div>
+        <input onKeyUp={handleChange} placeholder="search user" name="text" />
       </div>
     </nav>
   )

@@ -10,6 +10,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   message: "",
+  findUser: null
 };
 
 export const authSlice = createSlice({
@@ -19,7 +20,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.token = action.payload.token;
         state.message = action.payload.message;
         state.isSuccess = true
@@ -31,6 +32,9 @@ export const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
         state.token = null;
+      })
+      .addCase(getUserByName.fulfilled, (state, action) => {
+        state.findUser = action.payload;
       })
   },
 });
@@ -68,6 +72,13 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 export const loged = createAsyncThunk("auth/loged", async () => {
   try {
     return await authService.loged();
+  } catch (error) {
+    console.error(error);
+  }
+});
+export const getUserByName = createAsyncThunk("auth/getUserByName", async (name) => {
+  try {
+    return await authService.getUserByName(name);
   } catch (error) {
     console.error(error);
   }
