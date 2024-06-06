@@ -3,10 +3,13 @@ import { useDispatch } from 'react-redux';
 import { register} from '../../features/auth/authSlice';
 import { Form, Input,notification, Button, Typography, Row, Col } from 'antd';
 import './Register.scss';
+import { useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
 const Register = () => {
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,6 +39,7 @@ const Register = () => {
 
   const onFinish = (values) => {
     dispatch(register(values));
+    navigate('/')
   };
 
   return (

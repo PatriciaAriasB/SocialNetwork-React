@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../features/posts/postsSlice";
-import { getAllPosts } from "../../features/posts/postsSlice";
 import { loged } from '../../features/auth/authSlice';
 
 const Profile = () => {
@@ -51,7 +50,6 @@ const Profile = () => {
                     <p className="card-text">
                         Posts :
                         {user.postsId.map((post) => {
-                            console.log(post);
                            return <span key={post._id}>{post.text}</span>
                         })}
                     </p>
