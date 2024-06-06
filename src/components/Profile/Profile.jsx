@@ -39,9 +39,6 @@ const Profile = () => {
     if(!user){
         return <p>loading ...</p>
     }
-
-    
-
     return (
         <>
             <div className="card">

@@ -11,6 +11,7 @@ const Search = () => {
     }, [name]);
 
     const user = useSelector((state) => state.auth.findUser)
+    console.log(user);
     if (!user) {
         return <p>cargando...</p>
     }

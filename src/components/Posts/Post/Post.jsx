@@ -7,7 +7,6 @@ import { dislike, getAllPosts, like } from "../../../features/posts/postsSlice";
 const Post = () => {
 
     const { posts } = useSelector((state) => state.posts);
-    console.log(posts);
 
     const { isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
@@ -26,7 +25,6 @@ const Post = () => {
     if (isLoading) {
         return <h1>Cargando posts...</h1>;
     }
-
 
     return (
         <div className="container mt-5">
