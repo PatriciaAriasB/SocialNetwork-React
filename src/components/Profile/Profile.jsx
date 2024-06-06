@@ -40,6 +40,8 @@ const Profile = () => {
         return <p>loading ...</p>
     }
 
+    
+
     return (
         <>
             <div className="card">
