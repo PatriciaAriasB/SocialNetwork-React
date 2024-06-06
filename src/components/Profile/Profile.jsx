@@ -7,6 +7,8 @@ const Profile = () => {
 
     const  {user}  = useSelector((state) => state.auth)
 
+    console.log(user);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -34,6 +36,9 @@ const Profile = () => {
         e.preventDefault();
         dispatch(createPost(formPost));
     };
+    if(!user){
+        return <p>loading ...</p>
+    }
 
     return (
         <>
