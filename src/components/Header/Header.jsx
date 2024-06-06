@@ -1,8 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/auth/authSlice";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
-  const user = JSON.parse(localStorage.getItem('user')) || null
+  const onLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    navigate("/login");
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,7 +28,8 @@ const Header = () => {
             {
               user ? (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/profile">Profile</Link>
+                  <span onClick={onLogout}>Logout</span>
+                  <span><Link to="/profile" >{user.name}</Link> </span>
                 </li>
               ) : (
                 <>
@@ -39,4 +49,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;
