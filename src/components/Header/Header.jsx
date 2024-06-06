@@ -1,8 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 
 const Header = () => {
 
-  const user = JSON.parse(localStorage.getItem('user')) || null
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const [text, setText] = useState("");
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+    if (e.key === "Enter") {
+      navigate('/search/'+ text)
+    }
+  };
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -34,6 +47,7 @@ const Header = () => {
             }
           </ul>
         </div>
+        <input onKeyUp={handleChange} placeholder="search user" name="text" />
       </div>
     </nav>
   )

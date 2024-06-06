@@ -5,7 +5,9 @@ import { loged } from '../../features/auth/authSlice';
 
 const Profile = () => {
 
-    const { user } = useSelector((state) => state.auth)
+    const  {user}  = useSelector((state) => state.auth)
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loged());
@@ -16,7 +18,6 @@ const Profile = () => {
         text: "",
         image: "",
     }
-    const dispatch = useDispatch();
 
     const [formPost, setFormPost] = useState(initialValue);
     const { text } = formPost;
