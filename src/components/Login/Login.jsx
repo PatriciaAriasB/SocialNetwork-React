@@ -1,7 +1,7 @@
 import './Login.scss';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../features/auth/authSlice';
+import { login, reset } from '../../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { notification, Button, Form, Input } from 'antd';
 
@@ -31,7 +31,7 @@ const Login = () => {
         description: message
       });
     }
-  }, [isSuccess, message, isError, dispatch, navigate]);
+  }, [isSuccess, message, isError]);
 
   const onChange = (e) => {
     setFormData({

@@ -5,9 +5,7 @@ import { loged } from '../../features/auth/authSlice';
 
 const Profile = () => {
 
-    const  {user}  = useSelector((state) => state.auth)
-
-    console.log(user);
+    const  {user}  = useSelector((state) => state.auth) || null
 
     const dispatch = useDispatch();
 

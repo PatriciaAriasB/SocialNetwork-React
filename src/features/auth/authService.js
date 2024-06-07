@@ -45,7 +45,6 @@ const getUserByName = async (name) => {
   return res.data;
 };
 
-
 const authService = {
   register,
   login,
