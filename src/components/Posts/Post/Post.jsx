@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Post.scss"
-import img from "../../../img/unnamed.png"
 import { dislike, getAllPosts, like } from "../../../features/posts/postsSlice";
+import "./Post.scss";
 
 const Post = () => {
-
-    const { posts } = useSelector((state) => state.posts);
-
-    const { isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
+
+    const { posts, isLoading } = useSelector((state) => state.posts);
 
     useEffect(() => {
         dispatch(getAllPosts());
     }, []);
 
     const putlike = (postId) => {
-        dispatch(like(postId))
-    }
+        dispatch(like(postId));
+    };
+
     const putdislike = (postId) => {
-        dispatch(dislike(postId))
-    }
+        dispatch(dislike(postId));
+    };
 
     if (isLoading) {
         return <h1>Cargando posts...</h1>;
@@ -40,6 +38,9 @@ const Post = () => {
                             <p className="name-client">
                                 <span>{post.userId?.name}</span>
                                 <span>{post.text}</span>
+                                <span>
+                                    Likes : {post.likes.length}
+                                </span>
                             </p>
                             <div className="social-media">
                                 <a onClick={() => putlike(post._id)}>

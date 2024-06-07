@@ -16,7 +16,14 @@ const initialState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.isError = false;
+      state.isSuccess = false;
+      state.message = "";
+    },
+
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
@@ -27,6 +34,7 @@ export const authSlice = createSlice({
       })
       .addCase(loged.fulfilled, (state, action) => {
         state.user = action.payload;
+
       })
 
       .addCase(logout.fulfilled, (state) => {
@@ -38,7 +46,6 @@ export const authSlice = createSlice({
       })
   },
 });
-
 export const register = createAsyncThunk("auth/register", async (user, thunkAPI) => {
   try {
     return await authService.register(user);
@@ -83,6 +90,7 @@ export const getUserByName = createAsyncThunk("auth/getUserByName", async (name)
     console.error(error);
   }
 });
+
 
 
 export default authSlice.reducer;

@@ -11,7 +11,7 @@ const Header = () => {
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    navigate("/login");
+    navigate('/login')
   };
 
   const [text, setText] = useState("");
