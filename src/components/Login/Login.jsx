@@ -31,6 +31,7 @@ const Login = () => {
         description: message
       });
     }
+    dispatch(reset())
   }, [isSuccess, message, isError]);
 
   const onChange = (e) => {
