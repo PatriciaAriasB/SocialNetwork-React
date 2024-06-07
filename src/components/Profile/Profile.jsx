@@ -5,9 +5,7 @@ import { loged } from '../../features/auth/authSlice';
 import './Profile.scss';
 
 const Profile = () => {
-
-    const  {user}  = useSelector((state) => state.auth) || null
-
+    const { user } = useSelector((state) => state.auth) || null;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -16,23 +14,37 @@ const Profile = () => {
 
     const initialValue = {
         text: "",
-        image: "",
-    }
+        image: null,
+    };
 
     const [formPost, setFormPost] = useState(initialValue);
-    const { text } = formPost;
+    const { text, image } = formPost;
 
     const handleChange = (e) => {
         e.preventDefault();
-        setFormPost({
-            ...formPost,
-            [e.target.name]: e.target.value,
-        });
+        const { name, value, files } = e.target;
+        if (name === "image") {
+            setFormPost({
+                ...formPost,
+                image: files[0],
+            });
+        } else {
+            setFormPost({
+                ...formPost,
+                [name]: value,
+            });
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createPost(formPost));
+        const formData = new FormData();
+        formData.append('text', text);
+        if (image) {
+            formData.append('image', image);
+        }
+        dispatch(createPost(formData));
+        setFormPost(initialValue); 
     };
 
     if (!user) {
@@ -63,7 +75,7 @@ const Profile = () => {
                 <div className="profile-posts">
                     {user.postsId.map((post) => (
                         <div key={post._id} className="profile-post">
-                            <img src={post.imageUrl || "https://via.placeholder.com/150"} alt="Post" className="post-image" />
+                            <img src={post.image || "https://via.placeholder.com/150"} alt="Post" className="post-image" />
                             <p className="post-text">{post.text}</p>
                         </div>
                     ))}
@@ -76,6 +88,12 @@ const Profile = () => {
                     value={text} 
                     onChange={handleChange} 
                     placeholder="Write a caption..." 
+                    className="post-input"
+                />
+                <input 
+                    type="file" 
+                    name="image" 
+                    onChange={handleChange} 
                     className="post-input"
                 />
                 <button type="submit" className="post-button">Submit</button>

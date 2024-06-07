@@ -1,7 +1,7 @@
 import {useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import img from "../../../img/unnamed.png";
-import { dislike, getAllPosts, like } from "../../../features/posts/postsSlice";
+import { dislike, getAllPosts, like} from "../../../features/posts/postsSlice";
 import "./Post.scss";
 
 const Post = () => {
