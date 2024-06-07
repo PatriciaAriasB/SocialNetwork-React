@@ -1,0 +1,101 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+
+    &-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            .profile-name {
+                font-size: 2rem;
+                margin: 0;
+            }
+
+            .profile-email {
+                color: #888;
+                margin: 5px 0;
+            }
+
+            .profile-stats {
+                display: flex;
+                gap: 15px;
+
+                .profile-stat {
+                    font-size: 1rem;
+
+                    strong {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    &-posts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+
+        .profile-post {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 150px;
+
+            .post-image {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                margin-bottom: 5px;
+            }
+
+            .post-text {
+                font-size: 0.9rem;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    .post-input {
+        padding: 10px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 10px;
+    }
+
+    .post-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        background-color: #3897f0;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}

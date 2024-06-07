@@ -19,6 +19,7 @@ const Header = () => {
   const handleChange = (e) => {
     setText(e.target.value);
     if (e.key === "Enter") {
+      setText("")
       navigate('/search/' + text);
     }
   };
@@ -38,7 +39,7 @@ const Header = () => {
             {user ? (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link">{user.name}</Link>
+                  <Link className="nav-link" to="/profile">{user.name}</Link>
                 </li>
                 <li className="nav-item">
                   <button className="btn btn-link nav-link" onClick={onLogout}>Logout</button>
@@ -56,7 +57,7 @@ const Header = () => {
             )}
           </ul>
         </div>
-        <input onKeyUp={handleChange} placeholder="search user" name="text" />
+        <input onKeyUp={handleChange} onChange={handleChange} value={text} name="text" placeholder="search user" />
       </div>
     </nav>
   );

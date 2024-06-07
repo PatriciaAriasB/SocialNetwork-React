@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByName } from "../../features/auth/authSlice";
+import './Search.scss'
 
 const Search = () => {
     const { name } = useParams();
@@ -11,29 +12,37 @@ const Search = () => {
     }, [name]);
 
     const user = useSelector((state) => state.auth.findUser)
-    console.log(user);
+    
     if (!user) {
         return <p>cargando...</p>
     }
     return <>
-        <div className="card">
-            <div className="card-body">
-                <h5 className="card-title">{user.name}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">{user.email}</h6>
-                <h6 className="card-subtitle mb-2 text-muted">{user.role}</h6>
-                <p className="card-text">Followers: {user.followers.map((follower) => {
-                    <span>{follower}</span>
-                })}</p>
-                <p className="card-text">Following: {user.following.map((follower) => {
-                    <span>{follower}</span>
-                })}</p>
-                <p className="card-text">
-                    Posts :
-                    {user.postsId.map((post) => {
-                        return <span key={post._id}>{post.text}</span>
-                    })}
-                </p>
-
+        <div className="profile">
+            <div className="profile-header">
+                <img src={user.profilePicture || "https://via.placeholder.com/150"} alt="Profile" className="profile-picture" />
+                <div className="profile-info">
+                    <h1 className="profile-name">{user.name}</h1>
+                    <p className="profile-email">{user.email}</p>
+                    <div className="profile-stats">
+                        <span className="profile-stat">
+                            <strong>{user.postsId.length}</strong> posts
+                        </span>
+                        <span className="profile-stat">
+                            <strong>{user.followers.length}</strong> followers
+                        </span>
+                        <span className="profile-stat">
+                            <strong>{user.following.length}</strong> following
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div className="profile-posts">
+                {user.postsId.map((post) => (
+                    <div key={post._id} className="profile-post">
+                        <img src={post.imageUrl || "https://via.placeholder.com/150"} alt="Post" className="post-image" />
+                        <p className="post-text">{post.text}</p>
+                    </div>
+                ))}
             </div>
         </div>
     </>
