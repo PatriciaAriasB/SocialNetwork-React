@@ -31,7 +31,6 @@ const Login = () => {
         description: message
       });
     }
-    // dispatch(reset());
   }, [isSuccess, message, isError, dispatch, navigate]);
 
   const onChange = (e) => {
