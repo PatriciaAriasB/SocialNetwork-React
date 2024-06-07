@@ -1,8 +1,28 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/auth/authSlice";
+import{ useState } from "react";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
-  const user = JSON.parse(localStorage.getItem('user')) || null
+  const onLogout = (e) => {
+    e.preventDefault();
+    console.log("hi");
+    dispatch(logout());
+    navigate("/login");
+  };
+
+  const [text, setText] = useState("");
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+    if (e.key === "Enter") {
+      navigate('/search/' + text);
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -16,27 +36,32 @@ const Header = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/">Home</Link>
             </li>
-            {
-              user ? (
+            {user ? (
+              <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/profile">Profile</Link>
+                  <Link className="nav-link">{user.name}</Link>
                 </li>
-              ) : (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/register">Register</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/login">Login</Link>
-                  </li>
-                </>
-              )
-            }
+                <li className="nav-item">
+                  <button className="btn btn-link nav-link" onClick={onLogout}>Logout</button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">Register</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">Login</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
+        <input onKeyUp={handleChange} placeholder="search user" name="text" />
       </div>
     </nav>
-  )
+  );
 }
 
-export default Header
+export default Header;
+

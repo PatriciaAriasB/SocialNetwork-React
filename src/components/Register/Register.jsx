@@ -37,6 +37,7 @@ const Register = () => {
       navigate('/')
     }
   };
+  
 
   return (
     <Row justify="center" align="middle" style={{ minHeight: '80vh' }}>
