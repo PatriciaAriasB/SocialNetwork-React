@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 import {useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Post.scss"
-=======
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
->>>>>>> manel
 import { dislike, getAllPosts, like } from "../../../features/posts/postsSlice";
 import "./Post.scss";
 
