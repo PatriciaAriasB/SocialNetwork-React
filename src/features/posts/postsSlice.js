@@ -6,8 +6,8 @@ const initialState = {
   isLoading: false,
   post: {},
   error: null,
+ 
 };
-
 export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
   try {
     return await postsService.getAllPosts();
@@ -15,6 +15,7 @@ export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
     throw error;
   }
 });
+
 
 export const getPostById = createAsyncThunk("posts/getPostById", async (id) => {
   try {
