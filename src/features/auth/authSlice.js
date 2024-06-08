@@ -80,9 +80,18 @@ export const loged = createAsyncThunk("auth/loged", async () => {
     console.error(error);
   }
 });
+
 export const getUserByName = createAsyncThunk("auth/getUserByName", async (name) => {
   try {
     return await authService.getUserByName(name);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const profilePicture = createAsyncThunk("auth/profilePicture", async (formUser) => {
+  try {
+    return await authService.profilePicture(formUser);
   } catch (error) {
     console.error(error);
   }

@@ -28,7 +28,7 @@ const loged = async () => {
 };
 
 const logout = async () => {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
   const res = await axios.delete(API_URL + "/users/logout",{},  {
     headers: {
       authorization: token,
@@ -45,12 +45,25 @@ const getUserByName = async (name) => {
   return res.data;
 };
 
+const profilePicture = async (img) => {
+  const token = localStorage.getItem("token");
+
+  const res = await axios.put(API_URL + "/users/profilePic", img, {
+    headers: {
+      authorization: token,
+    },
+  })
+  console.log(res.data);
+  return res.data
+}
+
 const authService = {
   register,
   login,
   loged,
   logout,
-  getUserByName
+  getUserByName,
+  profilePicture
 };
 
 export default authService;

@@ -1,7 +1,7 @@
 import {useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import img from "../../../img/unnamed.png";
-import { dislike, getAllPosts, like } from "../../../features/posts/postsSlice";
+import { dislike, getAllPosts, like} from "../../../features/posts/postsSlice";
 import "./Post.scss";
 
 const Post = () => {
@@ -23,6 +23,7 @@ const Post = () => {
     if (isLoading) {
         return <h1>Cargando posts...</h1>;
     }
+    console.log(posts);
 
     return (
         <div className="container mt-5">
@@ -32,14 +33,14 @@ const Post = () => {
                         <div className="card-post">
                             <div className="post-header">
                                 <div className="user-picture">
-                                    <img src="https://via.placeholder.com/50" alt="user profile" />
+                                    <img src={"http://localhost:8080/public/users/" + post.userId?.profilePic} alt="user profile" />
                                 </div>
                                 <p className="name-client">
                                     <span>{post.userId?.name}</span>
                                 </p>
                             </div>
                             <div className="post-image-container">
-                                <img src={img} alt="post" className="post-image" />
+                                <img src={"http://localhost:8080/public/posts/" + post.image} alt="post" className="post-image" />
                             </div>
                             <div className="post-body">
                                 <p className="post-text">{post.text}</p>

@@ -1,38 +1,45 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../features/auth/authSlice";
-import{ useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../features/auth/authSlice';
+import './Header.scss'; 
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
-  const onLogout = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-    navigate('/login')
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchText, setSearchText] = useState('');
+
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
   };
 
-  const [text, setText] = useState("");
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login');
+  };
 
-  const handleChange = (e) => {
-    setText(e.target.value);
-    if (e.key === "Enter") {
-      setText("")
-      navigate('/search/' + text);
-    }
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setSearchText('');
+    navigate(`/search/${searchText}`);
   };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <Link className="navbar-brand" to="/">M&P</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" onClick={toggleNavbar}>
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
+        <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
+          <ul className="navbar-nav me-auto"> 
             <li className="nav-item">
               <Link className="nav-link" to="/">Home</Link>
             </li>
@@ -42,7 +49,7 @@ const Header = () => {
                   <Link className="nav-link" to="/profile">{user.name}</Link>
                 </li>
                 <li className="nav-item">
-                  <button className="btn btn-link nav-link" onClick={onLogout}>Logout</button>
+                  <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
                 </li>
               </>
             ) : (
@@ -56,12 +63,21 @@ const Header = () => {
               </>
             )}
           </ul>
+          <form className="d-flex" onSubmit={handleSearchSubmit}>
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              value={searchText}
+              onChange={handleSearchChange}
+            />
+            <button className="btn btn-outline-light" type="submit">Search</button>
+          </form>
         </div>
-        <input onKeyUp={handleChange} onChange={handleChange} value={text} name="text" placeholder="search user" />
       </div>
     </nav>
   );
-}
+};
 
 export default Header;
-
