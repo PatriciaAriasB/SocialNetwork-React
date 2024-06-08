@@ -12,12 +12,12 @@ const Profile = () => {
         dispatch(loged());
     }, [dispatch]);
 
-    const initialValue = {
+    const initialFormState = {
         text: "",
         image: null,
     };
 
-    const [formPost, setFormPost] = useState(initialValue);
+    const [formPost, setFormPost] = useState(initialFormState);
     const { text, image } = formPost;
 
     const handleChange = (e) => {
@@ -44,7 +44,7 @@ const Profile = () => {
             formData.append('image', image);
         }
         dispatch(createPost(formData));
-        setFormPost(initialValue); 
+        setFormPost(initialFormState); 
     };
 
     if (!user) {

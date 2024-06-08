@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../features/auth/authSlice';
-import './Header.scss'; // Importa el archivo de estilos CSS
+import './Header.scss'; 
 
 const Header = () => {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
-          <ul className="navbar-nav me-auto"> {/* Cambiado a me-auto para alinear a la izquierda */}
+          <ul className="navbar-nav me-auto"> 
             <li className="nav-item">
               <Link className="nav-link" to="/">Home</Link>
             </li>
