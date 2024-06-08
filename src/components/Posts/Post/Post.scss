@@ -32,14 +32,17 @@
 
 .post-image-container {
   width: 100%;
-  height: auto;
+  height: 400px; // Fija la altura del contenedor de la imagen
   background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .post-image {
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 100%;
+  object-fit: cover; // Asegura que la imagen cubra todo el contenedor
 }
 
 .post-body {
@@ -57,6 +60,11 @@
   justify-content: space-between;
 }
 
+.social-media {
+  display: flex;
+  align-items: center;
+}
+
 .social-media svg {
   cursor: pointer;
   fill: #262626;
@@ -69,4 +77,24 @@
 
 .likes { 
   padding: 10px;
+}
+
+.comments {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.comments svg {
+  fill: #262626;
+  margin-right: 5px;
+}
+
+.comments:hover svg {
+  fill: #0095f6;
+}
+
+.comments span {
+  font-size: 14px;
+  color: #262626;
 }
