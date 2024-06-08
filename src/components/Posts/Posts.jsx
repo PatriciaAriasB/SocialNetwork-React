@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import Post from './Post/Post'
 import { useDispatch } from 'react-redux';
 import { getAllPosts } from '../../features/posts/postsSlice';
