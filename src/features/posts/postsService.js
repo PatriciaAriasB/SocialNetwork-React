@@ -11,6 +11,10 @@ const getAllPosts = async () => {
     throw error;
   }
 };
+// const addComment = async ({ postId, comment }) => {
+//   const response = await axios.post(`${API_URL}/${postId}/comments`, { text: comment });
+//   return response.data;
+// };
 
 const getById = async (id) => {
   try {
@@ -72,7 +76,9 @@ const postsService = {
   getById,
   createPost,
   like,
-  dislike
+  dislike, 
+  // addComment
+  
 };
 
 export default postsService;
