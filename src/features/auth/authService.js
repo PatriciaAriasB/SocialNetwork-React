@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL = "http://localhost:8080";
 
 const register = async (userData) => {
-  
+
   const res = await axios.post(API_URL + "/users", userData);
   return res.data;
 };
@@ -17,7 +17,7 @@ const login = async (userData) => {
   return res.data
 }
 const loged = async () => {
-  const token = localStorage.getItem('token') ||null
+  const token = localStorage.getItem('token') || null
 
   const res = await axios.get(API_URL + "/users/loged", {
     headers: {
@@ -29,7 +29,7 @@ const loged = async () => {
 
 const logout = async () => {
   const token = localStorage.getItem("token");
-  const res = await axios.delete(API_URL + "/users/logout",{},  {
+  const res = await axios.delete(API_URL + "/users/logout", {}, {
     headers: {
       authorization: token,
     },
@@ -53,9 +53,38 @@ const profilePicture = async (img) => {
       authorization: token,
     },
   })
-  console.log(res.data);
   return res.data
 }
+
+const follow = async (userId) => {
+  const token = localStorage.getItem('token') || null;
+  try {
+    const res = await axios.put(`${API_URL}/users/follow/${userId}`, {}, {
+      headers: {
+        Authorization: token
+      }
+    });
+    return res.data;
+  } catch (error) {
+    console.error(`Error following user ${userId}:`, error);
+    throw error;
+  }
+};
+
+const unfollow = async (userId) => {
+  const token = localStorage.getItem('token') || null;
+  try {
+    const res = await axios.put(`${API_URL}/users/unfollow/${userId}`, {}, {
+      headers: {
+        Authorization: token
+      }
+    });
+    return res.data;
+  } catch (error) {
+    console.error(`Error unfollowing user ${userId}:`, error);
+    throw error;
+  }
+};
 
 const authService = {
   register,
@@ -63,7 +92,9 @@ const authService = {
   loged,
   logout,
   getUserByName,
-  profilePicture
+  profilePicture,
+  follow,
+  unfollow
 };
 
 export default authService;

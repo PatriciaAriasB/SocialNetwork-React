@@ -14,6 +14,7 @@ import {
     Button,
 } from '@chakra-ui/react'
 import './Profile.scss';
+import { Modal } from 'react-bootstrap';
 
 const Profile = () => {
     const { user } = useSelector((state) => state.auth) || null;
@@ -32,6 +33,10 @@ const Profile = () => {
 
     const [formPost, setFormPost] = useState(initialFormState);
     const { text, image } = formPost;
+    const [show, setShow] = useState(false);
+
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -106,6 +111,33 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
+                <div className='createPost' onClick={handleShow}>Create post</div>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Post</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <form onSubmit={handleSubmit} className="post-form">
+                            <input
+                                type="text"
+                                name="text"
+                                value={text}
+                                onChange={handleChange}
+                                placeholder="Post here..."
+                                className="post-input"
+                            />
+                            <input
+                                type="file"
+                                name="image"
+                                onChange={handleChange}
+                                className="post-input"
+                            />
+                            <Button variant="primary" type='submit' onClick={handleClose}>
+                                Save Changes
+                            </Button>
+                        </form>
+                    </Modal.Body>
+                </Modal>
                 <div className="profile-posts">
                     {user.postsId.map((post) => (
                         <div key={post._id} className="profile-post">
@@ -118,24 +150,7 @@ const Profile = () => {
                         </div>
                     ))}
                 </div>
-            </div>
-            <form onSubmit={handleSubmit} className="post-form">
-                <input
-                    type="text"
-                    name="text"
-                    value={text}
-                    onChange={handleChange}
-                    placeholder="Write a caption..."
-                    className="post-input"
-                />
-                <input
-                    type="file"
-                    name="image"
-                    onChange={handleChange}
-                    className="post-input"
-                />
-                <button type="submit" className="post-button">Submit</button>
-            </form>
+            </div >
             <Drawer
                 isOpen={isOpen}
                 placement="left"
@@ -145,7 +160,7 @@ const Profile = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>Select your image</DrawerHeader>
+                    <DrawerHeader>Select your profile image</DrawerHeader>
                     <DrawerBody>
                         <input
                             type="file"

@@ -2,10 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dislike, getAllPosts, like } from "../../../features/posts/postsSlice";
 import "./Post.scss";
+import { useNavigate } from "react-router-dom";
 
 const Post = () => {
     const dispatch = useDispatch();
     const { posts, isLoading } = useSelector((state) => state.posts);
+    const navigate = useNavigate()
+    const userLogged = JSON.parse(localStorage.getItem('user'))
 
     useEffect(() => {
         dispatch(getAllPosts());
@@ -22,7 +25,14 @@ const Post = () => {
     if (isLoading) {
         return <h1>Cargando posts...</h1>;
     }
-    console.log(posts);
+    
+      const searchUser = (user) => {
+        user._id === userLogged._id ? (
+            navigate(`/profile`)
+        ) : (
+            navigate(`/search/${user.name}`)
+        )
+      };
 
     return (
         <div className="container mt-5">
@@ -31,7 +41,7 @@ const Post = () => {
                     <div key={post._id} className="col-md-6 mb-4">
                         <div className="card-post">
                             <div className="post-header">
-                                <div className="user-picture">
+                                <div className="user-picture" onClick={() =>searchUser(post.userId)}>
                                     <img src={"http://localhost:8080/public/users/" + post.userId?.profilePic} alt="user profile" />
                                 </div>
                                 <p className="name-client">

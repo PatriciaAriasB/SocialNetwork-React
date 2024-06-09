@@ -99,3 +99,17 @@
         cursor: pointer;
     }
 }
+
+.createPost{
+    background-color: #888;
+    width: 20%;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 2px;
+    text-align: center;
+    transition: transform 0.3s ease; /* Añade una transición suave */
+}
+
+.createPost:hover {
+    transform: scale(1.1); /* Incrementa el tamaño en un 10% */
+}

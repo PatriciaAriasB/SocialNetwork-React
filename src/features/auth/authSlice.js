@@ -72,6 +72,22 @@ export const profilePicture = createAsyncThunk("auth/profilePicture", async (for
   }
 });
 
+export const follow = createAsyncThunk("posts/follow", async (userId) => {
+  try {
+    return await authService.follow(userId);
+  } catch (error) {
+    throw error;
+  }
+});
+
+export const unfollow = createAsyncThunk("posts/unfollow", async (userId) => {
+  try {
+    return await authService.unfollow(userId);
+  } catch (error) {
+    throw error;
+  }
+});
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -103,7 +119,7 @@ export const authSlice = createSlice({
       })
       .addCase(getUserByName.fulfilled, (state, action) => {
         state.findUser = action.payload;
-      });
+      })
   },
 });
 

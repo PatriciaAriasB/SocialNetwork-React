@@ -99,3 +99,15 @@
         cursor: pointer;
     }
 }
+
+.follow{
+    background-color: #888;
+    width: 150px;
+    text-align: center;
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* Añade una transición suave */
+}
+
+.follow:hover {
+    transform: scale(1.1); /* Incrementa el tamaño en un 10% */
+}
