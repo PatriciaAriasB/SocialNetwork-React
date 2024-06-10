@@ -1,3 +1,19 @@
-.linkLogin{
-    margin-left: 20%
-}
+.linkLogin {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 16px;
+    color: #154674;
+    transition: color 0.3s ease;
+  }
+  
+  .linkLogin:hover {
+    color: #40a9ff;
+  }
+  
+  @media (max-width: 768px) {
+    .linkLogin {
+      font-size: 14px;
+    }
+  }
+  
