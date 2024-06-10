@@ -19,7 +19,6 @@ const PostDetail = () => {
     dispatch(addComment(dataComment));
     setComment("");
   };
-console.log(postById);
   useEffect(() => {
     dispatch(getPostById(id));
   }, [postById, dispatch, id]);

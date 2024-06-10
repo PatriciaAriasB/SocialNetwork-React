@@ -58,6 +58,14 @@ export const addComment = createAsyncThunk("posts/addComment", async ( dataComme
   }
 });
 
+export const deletePost = createAsyncThunk("posts/deletePost", async ( id ) => {
+  try {
+    return await postsService.deletePost(id);
+  } catch (error) {
+    throw error;
+  }
+});
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,

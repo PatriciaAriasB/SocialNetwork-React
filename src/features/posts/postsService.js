@@ -46,6 +46,21 @@ const createPost = async (post) => {
   }
 };
 
+const deletePost = async (id) => {
+  const token = localStorage.getItem('token') || null;
+  try {
+    const res = await axios.delete(`${API_URL}/posts/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    throw error;
+  }
+};
+
 const like = async (postId) => {
   const token = localStorage.getItem('token') || null;
   try {
@@ -82,7 +97,8 @@ const postsService = {
   createPost,
   like,
   dislike, 
-  addComment  
+  addComment,
+  deletePost
 };
 
 export default postsService;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "../../features/posts/postsSlice";
+import { createPost, deletePost } from "../../features/posts/postsSlice";
 import { loged, profilePicture } from '../../features/auth/authSlice';
 import {
     Drawer,
@@ -24,7 +24,7 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(loged());
-    }, [user, dispatch]);
+    }, [user]);
 
     const initialFormState = {
         text: "",
@@ -33,10 +33,14 @@ const Profile = () => {
 
     const [formPost, setFormPost] = useState(initialFormState);
     const { text, image } = formPost;
-    const [show, setShow] = useState(false);
+    const [showCreatePost, setShowCreatePost] = useState(false);
+    const [showEditPost, setShowEditPost] = useState(false);
 
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+    const handleShowCreatePost = () => setShowCreatePost(true);
+    const handleCloseCreatePost = () => setShowCreatePost(false);
+
+    const handleShowEditPost = () => setShowEditPost(true);
+    const handleCloseEditPost = () => setShowEditPost(false);
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -65,6 +69,16 @@ const Profile = () => {
         setFormPost(initialFormState);
     };
 
+    // const handleEditSubmit = (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append('text', text);
+    //     if (image) {
+    //         formData.append('image', image);
+    //     }
+    //     dispatch(createPost(formData));
+    //     setFormPost(initialFormState);
+    // };
 
     const [file, setFile] = useState(null);
 
@@ -79,6 +93,10 @@ const Profile = () => {
         formData.append('profilePic', file);
         dispatch(profilePicture(formData))
         onClose()
+    }
+
+    const delPost = (id) => {
+        dispatch(deletePost(id))
     }
 
     if (!user) {
@@ -111,8 +129,8 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className='createPost' onClick={handleShow}>Create post</div>
-                <Modal show={show} onHide={handleClose}>
+                <div className='createPost' onClick={handleShowCreatePost}>Create post</div>
+                <Modal show={showCreatePost} onHide={handleCloseCreatePost}>
                     <Modal.Header closeButton>
                         <Modal.Title>Post</Modal.Title>
                     </Modal.Header>
@@ -132,7 +150,7 @@ const Profile = () => {
                                 onChange={handleChange}
                                 className="post-input"
                             />
-                            <Button variant="primary" type='submit' onClick={handleClose}>
+                            <Button variant="primary" type='submit' onClick={handleCloseCreatePost}>
                                 Save Changes
                             </Button>
                         </form>
@@ -140,16 +158,47 @@ const Profile = () => {
                 </Modal>
                 <div className="profile-posts">
                     {user.postsId.map((post) => (
-                        <div key={post._id} className="profile-post">
+                        <div key={post._id} className="profile-post image-container" onClick={() => handleShowEditPost(post)}>
                             <img
                                 src={"http://localhost:8080/public/posts/" + post.image || "https://via.placeholder.com/150"}
                                 alt="Post"
                                 className="post-image"
                             />
+                            <button className="delete-button" onClick={() => delPost(post._id)}>
+                                &times;
+                            </button>
                             <p className="post-text">{post.text}</p>
                         </div>
                     ))}
                 </div>
+                <Modal show={showEditPost} onHide={handleCloseEditPost}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Post</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <>
+                            <form onSubmit={handleSubmit} className="post-form">
+                                <input
+                                    type="text"
+                                    name="text"
+                                    value={text}
+                                    onChange={handleChange}
+                                    placeholder="Edit post here..."
+                                    className="post-input"
+                                />
+                                <input
+                                    type="file"
+                                    name="image"
+                                    onChange={handleChange}
+                                    className="post-input"
+                                />
+                                <Button variant="primary" type='submit' onClick={handleCloseEditPost}>
+                                    Save Changes
+                                </Button>
+                            </form>
+                        </>
+                    </Modal.Body>
+                </Modal>
             </div >
             <Drawer
                 isOpen={isOpen}
