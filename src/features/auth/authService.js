@@ -45,6 +45,11 @@ const getUserByName = async (name) => {
   return res.data;
 };
 
+const getUserById = async (id) => {
+  const res = await axios.get(API_URL + "/users/id/" + id);
+  return res.data;
+};
+
 const profilePicture = async (img) => {
   const token = localStorage.getItem("token");
 
@@ -94,7 +99,8 @@ const authService = {
   getUserByName,
   profilePicture,
   follow,
-  unfollow
+  unfollow,
+  getUserById
 };
 
 export default authService;

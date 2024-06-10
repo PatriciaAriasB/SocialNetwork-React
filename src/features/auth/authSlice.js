@@ -10,7 +10,8 @@ const initialState = {
   isError: false,
   isSuccess: false,
   message: "",
-  findUser: null
+  findUser: null,
+  findUserById: null
 };
 
 
@@ -59,6 +60,14 @@ export const loged = createAsyncThunk("auth/loged", async () => {
 export const getUserByName = createAsyncThunk("auth/getUserByName", async (name) => {
   try {
     return await authService.getUserByName(name);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const getUserById = createAsyncThunk("auth/getUserById", async (id) => {
+  try {
+    return await authService.getUserById(id);
   } catch (error) {
     console.error(error);
   }

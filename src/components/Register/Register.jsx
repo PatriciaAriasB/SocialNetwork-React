@@ -1,22 +1,25 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../features/auth/authSlice';
-import { Form, Input, notification, Button, Typography, Row, Col } from 'antd';
+import { Form, Input, notification, Button, Typography, Row, Col, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import './Register.scss';
 import { useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
 const Register = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
+    image: null 
   });
-  const { name, email, password, password2 } = formData;
+
+  const { name, email, password, password2, image } = formData;
   const dispatch = useDispatch();
 
   const onChange = (e) => {
@@ -26,6 +29,15 @@ const Register = () => {
     });
   };
 
+  const onImageChange = (info) => {
+    if (info.file.status === 'done') {
+      setFormData({
+        ...formData,
+        image: info.file.originFileObj
+      });
+    }
+  };
+
   const onFinish = (values) => {
     if (values.password !== values.password2) {
       return notification.error({
@@ -33,11 +45,22 @@ const Register = () => {
         description: "Las contraseñas no coinciden",
       });
     } else {
-      dispatch(register(values));
-      navigate('/')
+      const formData = new FormData();
+      formData.append('name', values.name);
+      formData.append('email', values.email);
+      formData.append('password', values.password);
+      formData.append('image', image); 
+
+      dispatch(register(formData)).unwrap().then(() => {
+        navigate('/');
+      }).catch((error) => {
+        notification.error({
+          message: 'Error',
+          description: error.message,
+        });
+      });
     }
   };
-  
 
   return (
     <Row justify="center" align="middle" style={{ minHeight: '80vh' }}>
@@ -68,9 +91,24 @@ const Register = () => {
           >
             <Input.Password placeholder="Repite Contraseña" value={password2} onChange={onChange} />
           </Form.Item>
+          <Form.Item
+            name="image"
+            rules={[{ required: true, message: 'Por favor sube una imagen' }]}
+          >
+            <Upload
+              name="image"
+              listType="picture"
+              showUploadList={false}
+              beforeUpload={() => false} 
+              onChange={onImageChange}
+            >
+              <Button icon={<UploadOutlined />}>Image Profile</Button>
+            </Upload>
+            {image && <span>{image.name}</span>}
+          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-              Registro
+              Register
             </Button>
           </Form.Item>
         </Form>

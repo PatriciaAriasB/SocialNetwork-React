@@ -12,6 +12,15 @@ const getAllPosts = async () => {
   }
 };
 
+const addComment = async (postId, comment ) => {
+  const token = localStorage.getItem('token') || null;
+  const response = await axios.post(`${API_URL}/comments/id/${postId}`, { text: comment },{
+    headers: {
+      Authorization: token
+    }});
+  return response.data;
+};
+
 const getById = async (id) => {
   try {
     const res = await axios.get(`${API_URL}/posts/id/${id}`);
@@ -72,7 +81,8 @@ const postsService = {
   getById,
   createPost,
   like,
-  dislike
+  dislike, 
+  addComment  
 };
 
 export default postsService;

@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   post: {},
   error: null,
+  postById: {},
 };
 
 export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
@@ -15,6 +16,7 @@ export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
     throw error;
   }
 });
+
 
 export const getPostById = createAsyncThunk("posts/getPostById", async (id) => {
   try {
@@ -48,6 +50,14 @@ export const dislike = createAsyncThunk("posts/dislike", async (postId) => {
   }
 });
 
+export const addComment = createAsyncThunk("posts/addComment", async ( dataComment ) => {
+  try {
+    return await postsService.addComment(dataComment.id, dataComment.text);
+  } catch (error) {
+    throw error;
+  }
+});
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -67,7 +77,7 @@ export const postsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getPostById.fulfilled, (state, action) => {
-        state.post = action.payload;
+        state.postById = action.payload;
       })
       .addCase(getPostById.rejected, (state, action) => {
         state.error = action.error.message;
@@ -93,7 +103,7 @@ export const postsSlice = createSlice({
       })
       .addCase(dislike.rejected, (state, action) => {
         state.error = action.error.message;
-      });
+      })
   },
 });
 
