@@ -6,7 +6,7 @@ const initialState = {
   isLoading: false,
   post: {},
   error: null,
- 
+  postById: {},
 };
 
 export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
@@ -50,9 +50,9 @@ export const dislike = createAsyncThunk("posts/dislike", async (postId) => {
   }
 });
 
-export const addComment = createAsyncThunk("posts/addComment", async ({ postId, comment }) => {
+export const addComment = createAsyncThunk("posts/addComment", async ( dataComment ) => {
   try {
-    return await postsService.addComment({ postId, comment });
+    return await postsService.addComment(dataComment.id, dataComment.text);
   } catch (error) {
     throw error;
   }
@@ -77,7 +77,7 @@ export const postsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getPostById.fulfilled, (state, action) => {
-        state.post = action.payload;
+        state.postById = action.payload;
       })
       .addCase(getPostById.rejected, (state, action) => {
         state.error = action.error.message;
@@ -104,17 +104,6 @@ export const postsSlice = createSlice({
       .addCase(dislike.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      // .addCase(addComment.fulfilled, (state, action) => {
-      //     state.comment = action.payload;
-      //   }
-      // .addCase(addComment.rejected, (state, action) => {
-      //   state.error = action.error.message;
-      // })
-      // .addCase(addComment.fulfilled, (state, action) => {
-      //   state.comments = state.comments.map(comment =>
-      //     comment._id === action.payload.comment._id ? action.payload.comment : comment
-      //   );
-      // })
   },
 });
 

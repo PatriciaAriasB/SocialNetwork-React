@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./Post.scss";
 
 const Post = () => {
-    
+
     const dispatch = useDispatch();
     const { posts, isLoading } = useSelector((state) => state.posts);
 
@@ -23,7 +23,7 @@ const Post = () => {
 
     if (isLoading) {
         return <div className="custom-loader"></div>
-;
+            ;
     }
     console.log(posts);
 
@@ -59,6 +59,7 @@ const Post = () => {
                         </a>
                     </div>
                     <div className="comments">
+                        <span className="commentsLenght">{post.commentsId.length}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                             <path d="M21 6h-2V4c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v2H3c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h6l4 4 4-4h4c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-2 12h-4.17L12 20.17 9.17 18H5V8h14v10z" />
                         </svg>

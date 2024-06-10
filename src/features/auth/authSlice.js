@@ -10,7 +10,8 @@ const initialState = {
   isError: false,
   isSuccess: false,
   message: "",
-  findUser: null
+  findUser: null,
+  findUserById: null
 };
 
 
@@ -64,6 +65,14 @@ export const getUserByName = createAsyncThunk("auth/getUserByName", async (name)
   }
 });
 
+export const getUserById = createAsyncThunk("auth/getUserById", async (id) => {
+  try {
+    return await authService.getUserById(id);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export const profilePicture = createAsyncThunk("auth/profilePicture", async (formUser) => {
   try {
     return await authService.profilePicture(formUser);
@@ -103,6 +112,9 @@ export const authSlice = createSlice({
       })
       .addCase(getUserByName.fulfilled, (state, action) => {
         state.findUser = action.payload;
+      })
+      .addCase(getUserById.fulfilled, (state, action) => {
+        state.findUserById = action.payload;
       });
   },
 });
