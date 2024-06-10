@@ -28,8 +28,8 @@ const loged = async () => {
 };
 
 const logout = async () => {
-  const token = localStorage.getItem("token");
-  const res = await axios.delete(API_URL + "/users/logout", {}, {
+  const token = localStorage.getItem("token") || null;
+  const res = await axios.delete(API_URL + "/users/logout", {
     headers: {
       authorization: token,
     },

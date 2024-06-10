@@ -18,7 +18,7 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
+    navigate('/register');
   };
 
   const handleSearchChange = (e) => {
@@ -56,9 +56,6 @@ const Header = () => {
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/register">Register</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">Login</Link>
                 </li>
               </>
             )}

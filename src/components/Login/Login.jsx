@@ -49,7 +49,7 @@ const Login = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  const emailRegex = /^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
   return (
     <div className="login-container">

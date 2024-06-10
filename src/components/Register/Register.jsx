@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../features/auth/authSlice';
-import { Form, Input, notification, Button, Typography, Row, Col, Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { Form, Input, notification, Button, Typography, Row, Col } from 'antd';
 import './Register.scss';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
@@ -16,7 +15,7 @@ const Register = () => {
     email: '',
     password: '',
     password2: '',
-    image: null 
+    image: null
   });
 
   const { name, email, password, password2, image } = formData;
@@ -27,15 +26,6 @@ const Register = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const onImageChange = (info) => {
-    if (info.file.status === 'done') {
-      setFormData({
-        ...formData,
-        image: info.file.originFileObj
-      });
-    }
   };
 
   const onFinish = (values) => {
@@ -49,7 +39,7 @@ const Register = () => {
       formData.append('name', values.name);
       formData.append('email', values.email);
       formData.append('password', values.password);
-      formData.append('image', image); 
+      formData.append('image', image);
 
       dispatch(register(formData)).unwrap().then(() => {
         navigate('/');
@@ -91,26 +81,14 @@ const Register = () => {
           >
             <Input.Password placeholder="Repite Contraseña" value={password2} onChange={onChange} />
           </Form.Item>
-          <Form.Item
-            name="image"
-            rules={[{ required: true, message: 'Por favor sube una imagen' }]}
-          >
-            <Upload
-              name="image"
-              listType="picture"
-              showUploadList={false}
-              beforeUpload={() => false} 
-              onChange={onImageChange}
-            >
-              <Button icon={<UploadOutlined />}>Image Profile</Button>
-            </Upload>
-            {image && <span>{image.name}</span>}
-          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
               Register
             </Button>
           </Form.Item>
+          <div>
+            <Link className='linkLogin' to={"/login"}>If you have an account Click Here</Link>
+          </div>
         </Form>
       </Col>
     </Row>
