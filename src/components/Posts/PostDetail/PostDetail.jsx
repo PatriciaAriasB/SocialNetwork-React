@@ -17,12 +17,6 @@ const PostDetail = () => {
     dispatch(getPostById(id));
   }, [dispatch, id]);
 
-  // const handleAddComment = (e) => {
-  //   e.preventDefault();
-  //   dispatch(addComment({ postId: id, comment }));
-  //   setComment('');
-  // };
-
   return (
     <div className="post-detail">
       <img src={"http://localhost:8080/public/posts/" + post.image} alt="post" className="post-image" />

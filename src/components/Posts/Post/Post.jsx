@@ -22,8 +22,10 @@ const Post = () => {
     };
 
     if (isLoading) {
-        return <h1>Cargando posts...</h1>;
+        return <div className="custom-loader"></div>
+;
     }
+    console.log(posts);
 
     const postList = posts.map((post) => (
         <div key={post._id} className="col-md-6 mb-4">
