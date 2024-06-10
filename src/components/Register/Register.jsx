@@ -32,7 +32,7 @@ const Register = () => {
     if (values.password !== values.password2) {
       return notification.error({
         message: "Error",
-        description: "Las contraseñas no coinciden",
+        description: "Passwords do not match",
       });
     } else {
       const formData = new FormData();
@@ -55,31 +55,31 @@ const Register = () => {
   return (
     <Row justify="center" align="middle" style={{ minHeight: '80vh' }}>
       <Col span={8}>
-        <Title level={2} style={{ textAlign: 'center', marginBottom: '2rem' }}>Registro</Title>
+        <Title level={2} style={{ textAlign: 'center', marginBottom: '2rem' }}>Register</Title>
         <Form name="register" onFinish={onFinish}>
           <Form.Item
             name="name"
-            rules={[{ required: true, message: 'Por favor ingresa tu nombre' }]}
+            rules={[{ required: true, message: 'Please input your name' }]}
           >
-            <Input placeholder="Nombre" value={name} onChange={onChange} />
+            <Input placeholder="Name" value={name} onChange={onChange} />
           </Form.Item>
           <Form.Item
             name="email"
-            rules={[{ required: true, message: 'Por favor ingresa tu correo electrónico' }]}
+            rules={[{ required: true, message: 'Please input your email' }]}
           >
             <Input type="email" placeholder="Email" value={email} onChange={onChange} />
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, message: 'Por favor ingresa tu contraseña' }]}
+            rules={[{ required: true, message: 'Please input your password' }]}
           >
-            <Input.Password placeholder="Contraseña" value={password} onChange={onChange} />
+            <Input.Password placeholder="Password" value={password} onChange={onChange} />
           </Form.Item>
           <Form.Item
             name="password2"
-            rules={[{ required: true, message: 'Por favor repite tu contraseña' }]}
+            rules={[{ required: true, message: 'Please repeat your password' }]}
           >
-            <Input.Password placeholder="Repite Contraseña" value={password2} onChange={onChange} />
+            <Input.Password placeholder="Repeat Password" value={password2} onChange={onChange} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
@@ -87,7 +87,7 @@ const Register = () => {
             </Button>
           </Form.Item>
           <div>
-            <Link className='linkLogin' to={"/login"}>If you have an account Click Here</Link>
+            <Link className='linkLogin' to={"/login"}>If you have an account, click here</Link>
           </div>
         </Form>
       </Col>
