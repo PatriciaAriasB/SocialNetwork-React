@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+.navbar {
+  background: linear-gradient(to right, #333, #666, #333); /* Define el degradado entre grises y negro */
+}
+
+.navbar-brand,
+.navbar-nav .nav-link,
+.form-control,
+.btn-outline-light {
+  color: #fff; /* Cambia el color del texto a blanco */
+  font-family: 'Poppins', sans-serif; /* Utiliza la fuente Poppins */
+  font-size: 16px; /* Tamaño de fuente */
+  font-weight: 400; /* Grosor de la fuente */
+  letter-spacing: 0.5px; /* Espaciado entre letras */
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+.navbar-brand:hover,
+.navbar-nav .nav-link:hover,
+.btn-outline-light:hover {
+  color: #fff; /* Cambia el color del texto a blanco al pasar el cursor */
+  text-decoration: none; /* Elimina el subrayado al pasar el cursor */
+  opacity: 0.8; /* Reduce ligeramente la opacidad al pasar el cursor */
+}
+
+
+.form-inline {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto; 
+}
+
+.input-group {
+  width: 300px;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.btn-outline-light {
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 0.25rem 0.25rem 0;
+}

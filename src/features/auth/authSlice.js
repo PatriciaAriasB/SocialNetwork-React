@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem("user")) || null;
 
 const initialState = {
   user: user,
+  
   token: token,
   isError: false,
   isSuccess: false,

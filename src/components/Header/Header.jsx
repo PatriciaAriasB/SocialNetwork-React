@@ -45,6 +45,11 @@ const Header = () => {
             </li>
             {user ? (
               <>
+                {user.role === "admin" && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/admin">Admin</Link>
+                  </li>
+                )}
                 <li className="nav-item">
                   <Link className="nav-link" to="/profile">{user.name}</Link>
                 </li>

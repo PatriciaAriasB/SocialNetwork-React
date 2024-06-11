@@ -69,11 +69,11 @@ const Login = () => {
           rules={[
             {
               required: true,
-              message: 'Por favor introduce tu email',
+              message: 'Please input your email',
             },
             {
               pattern: emailRegex,
-              message: 'Por favor introduce un email correcto',
+              message: 'Please input a valid email',
             },
           ]}
         >
@@ -81,12 +81,12 @@ const Login = () => {
         </Form.Item>
 
         <Form.Item
-          label="Contraseña"
+          label="Password"
           name="password"
           rules={[
             {
               required: true,
-              message: 'Por favor introduce tu contraseña!',
+              message: 'Please input your password!',
             },
           ]}
         >
@@ -95,7 +95,7 @@ const Login = () => {
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Enviar
+            Submit
           </Button>
         </Form.Item>
       </Form>
