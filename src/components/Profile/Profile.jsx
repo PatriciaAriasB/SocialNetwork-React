@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react'
 import './Profile.scss';
 import { Modal } from 'react-bootstrap';
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const Profile = () => {
     const { user } = useSelector((state) => state.auth) || null;
@@ -35,6 +36,7 @@ const Profile = () => {
     const { text, image } = formPost;
     const [showCreatePost, setShowCreatePost] = useState(false);
     const [showEditPost, setShowEditPost] = useState(false);
+    const [showForDeletePost, setshowForDeletePost] = useState(false)
 
     const handleShowCreatePost = () => setShowCreatePost(true);
     const handleCloseCreatePost = () => setShowCreatePost(false);
@@ -69,17 +71,6 @@ const Profile = () => {
         setFormPost(initialFormState);
     };
 
-    // const handleEditSubmit = (e) => {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append('text', text);
-    //     if (image) {
-    //         formData.append('image', image);
-    //     }
-    //     dispatch(createPost(formData));
-    //     setFormPost(initialFormState);
-    // };
-
     const [file, setFile] = useState(null);
 
     const handleFileChangeUser = (e) => {
@@ -97,6 +88,14 @@ const Profile = () => {
 
     const delPost = (id) => {
         dispatch(deletePost(id))
+    }
+
+    const setShowDeleteButtons = () => {
+        if(!showForDeletePost){
+            setshowForDeletePost(true)
+        }else{
+            setshowForDeletePost(false)
+        }
     }
 
     if (!user) {
@@ -129,7 +128,10 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className='createPost' onClick={handleShowCreatePost}>Create post</div>
+                <p className='profileButtons'>
+                    <button className='createPost' onClick={handleShowCreatePost}>Create post</button>
+                    <button className='deletePost' onClick={setShowDeleteButtons}><FaRegTrashAlt /></button>
+                </p>
                 <Modal show={showCreatePost} onHide={handleCloseCreatePost}>
                     <Modal.Header closeButton>
                         <Modal.Title>Post</Modal.Title>
@@ -158,15 +160,20 @@ const Profile = () => {
                 </Modal>
                 <div className="profile-posts">
                     {user.postsId.map((post) => (
-                        <div key={post._id} className="profile-post image-container" onClick={() => handleShowEditPost(post)}>
+                        <div key={post._id} className="profile-post image-container">
                             <img
+                                onClick={() => handleShowEditPost(post)}
                                 src={"http://localhost:8080/public/posts/" + post.image || "https://via.placeholder.com/150"}
                                 alt="Post"
                                 className="post-image"
                             />
-                            <button className="delete-button" onClick={() => delPost(post._id)}>
-                                &times;
-                            </button>
+                            {
+                                showForDeletePost && (
+                                    <button className="delete-button" onClick={() => delPost(post._id)}>
+                                        &times;
+                                    </button>
+                                )
+                            }
                             <p className="post-text">{post.text}</p>
                         </div>
                     ))}

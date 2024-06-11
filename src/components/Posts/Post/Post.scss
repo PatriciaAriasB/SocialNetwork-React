@@ -65,6 +65,10 @@
   align-items: center;
 }
 
+.likeDislikeButton{
+  width: 100px;
+}
+
 .social-media svg {
   cursor: pointer;
   fill: #262626;
@@ -74,6 +78,7 @@
 .social-media svg:hover {
   fill: #0095f6;
 }
+
 
 .likes { 
   padding: 10px;

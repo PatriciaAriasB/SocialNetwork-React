@@ -4,6 +4,8 @@ import { dislike, getAllPosts, like } from "../../../features/posts/postsSlice";
 import { Link } from "react-router-dom";
 import "./Post.scss";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+
 
 const Post = () => {
 
@@ -28,20 +30,20 @@ const Post = () => {
         return <div className="custom-loader"></div>
             ;
     }
-    
-      const searchUser = (user) => {
+
+    const searchUser = (user) => {
         user._id === userLogged._id ? (
             navigate(`/profile`)
         ) : (
             navigate(`/search/${user.name}`)
         )
-      };
+    };
 
     const postList = posts.map((post) => (
         <div key={post._id} className="col-md-6 mb-4">
             <div className="card-post">
                 <div className="post-header">
-                    <div className="user-picture" onClick={() =>searchUser(post.userId)}>
+                    <div className="user-picture" onClick={() => searchUser(post.userId)}>
                         <img src={"http://localhost:8080/public/users/" + post.userId?.profilePic} alt="user profile" />
                     </div>
                     <p className="name-client">
@@ -58,14 +60,10 @@ const Post = () => {
                     <div className="social-media">
                         <span className="likes">{post.likes.length}</span>
                         <a onClick={() => putlike(post._id)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M1 21h4V9H1v12zM23 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14 2 7.59 8.59C7.21 8.95 7 9.45 7 10v8c0 1.1.9 2 2 2h9c.78 0 1.48-.45 1.82-1.11l3.18-6.37c.11-.23.16-.47.16-.72v-1z" />
-                            </svg>
+                            <AiOutlineLike />
                         </a>
                         <a onClick={() => putdislike(post._id)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M1 3h4v12H1V3zm22 10c0 1.1-.9 2-2 2h-6.31l.95 4.57.03.32c0 .41-.17.79-.44 1.06L14 22 7.59 15.41C7.21 15.05 7 14.55 7 14V6c0-1.1.9-2 2-2h9c.78 0 1.48.45 1.82 1.11l3.18 6.37c.11.23.16.47.16.72v1z" />
-                            </svg>
+                            <AiOutlineDislike />
                         </a>
                     </div>
                     <div className="comments">

@@ -25,17 +25,21 @@ const PostDetail = () => {
 
   return (
     <div className="post-detail">
-      <img src={"http://localhost:8080/public/posts/" + postById.image} alt="post" className="post-image" />
-      <div className="post-info">
-        <p className="post-text">{postById.text}</p>
-        <h2>Comments</h2>
-        <div className="comments-section">
-          {postById.commentsId?.map((comment) => (
-            <div key={comment._id} className="comment">
-              <p><strong>{comment.userId.name}:</strong> {comment.text}</p>
-            </div>
-          ))}
+      <div className="image-container">
+        <img src={"http://localhost:8080/public/posts/" + postById.image} alt="post" className="post-image" />
+        <div className="footer">
+          <p className="post-text">{postById.text}</p>
         </div>
+      </div>
+      <div className="post-info">
+        {postById.commentsId?.map((comment) => (
+          <div class="notification">
+            <div class="notiglow"></div>
+            <div class="notiborderglow"></div>
+            <div class="notititle">{comment.userId.name}</div>
+            <div class="notibody">{comment.text}</div>
+          </div>
+        ))}
         <form onSubmit={handleSubmit} className="comment-form">
           <input
             type="text"
