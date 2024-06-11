@@ -25,7 +25,7 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(loged());
-    }, [user]);
+    }, []);
 
     const initialFormState = {
         text: "",
