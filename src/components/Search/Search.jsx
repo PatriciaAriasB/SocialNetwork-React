@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { follow, getUserByName, unfollow } from "../../features/auth/authSlice";
 import './Search.scss'
@@ -7,6 +7,7 @@ import './Search.scss'
 const Search = () => {
     const { name } = useParams();
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const followUser = (userId) => {
         dispatch(follow(userId))
@@ -20,10 +21,10 @@ const Search = () => {
 
     useEffect(() => {
         dispatch(getUserByName(name))
-    }, [name, user]);
+    }, [name]);
     
     if (!user) {
-        return <p>cargando...</p>
+        return navigate("/notFound")
     }
     return <>
         <div className="profile">

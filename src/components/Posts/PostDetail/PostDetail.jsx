@@ -16,7 +16,11 @@ const PostDetail = () => {
       id: postById._id,
       text: comment
     }
-    dispatch(addComment(dataComment));
+    if(!dataComment.text == ""){
+      console.log("hi");
+      dispatch(addComment(dataComment));
+      setComment("");
+    }
     setComment("");
   };
   useEffect(() => {
@@ -33,11 +37,11 @@ const PostDetail = () => {
       </div>
       <div className="post-info">
         {postById.commentsId?.map((comment) => (
-          <div class="notification">
-            <div class="notiglow"></div>
-            <div class="notiborderglow"></div>
-            <div class="notititle">{comment.userId.name}</div>
-            <div class="notibody">{comment.text}</div>
+          <div className="notification">
+            <div className="notiglow"></div>
+            <div className="notiborderglow"></div>
+            <div className="notititle">{comment.userId.name}</div>
+            <div className="notibody">{comment.text}</div>
           </div>
         ))}
         <form onSubmit={handleSubmit} className="comment-form">

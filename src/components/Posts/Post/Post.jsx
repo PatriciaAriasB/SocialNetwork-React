@@ -3,18 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { dislike, getAllPosts, like } from "../../../features/posts/postsSlice";
 import { Link, useNavigate } from "react-router-dom";
 import "./Post.scss";
-<<<<<<< HEAD
-import { useNavigate } from "react-router-dom";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 
-=======
->>>>>>> 7eda7f44443d489b2e07600bd289b5b34100d4e5
 
 const Post = () => {
+
     const dispatch = useDispatch();
     const { posts, isLoading } = useSelector((state) => state.posts);
-    const navigate = useNavigate();
-    const userLogged = JSON.parse(localStorage.getItem('user'));
+    const navigate = useNavigate()
+    const userLogged = JSON.parse(localStorage.getItem('user'))
 
     useEffect(() => {
         dispatch(getAllPosts());
@@ -29,23 +26,16 @@ const Post = () => {
     };
 
     if (isLoading) {
-        return <div className="custom-loader"></div>;
+        return <div className="custom-loader"></div>
+            ;
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 7eda7f44443d489b2e07600bd289b5b34100d4e5
     const searchUser = (user) => {
         user._id === userLogged._id ? (
             navigate(`/profile`)
         ) : (
             navigate(`/search/${user.name}`)
-<<<<<<< HEAD
         )
-=======
-        );
->>>>>>> 7eda7f44443d489b2e07600bd289b5b34100d4e5
     };
 
     const postList = posts.map((post) => (
@@ -68,10 +58,10 @@ const Post = () => {
                 <div className="post-footer">
                     <div className="social-media">
                         <span className="likes">{post.likes.length}</span>
-                        <a onClick={() => putlike(post._id)}>
+                        <a onClick={() => putlike(post._id)} className="likeDislikeButton">
                             <AiOutlineLike />
                         </a>
-                        <a onClick={() => putdislike(post._id)}>
+                        <a onClick={() => putdislike(post._id)} className="likeDislikeButton">
                             <AiOutlineDislike />
                         </a>
                     </div>

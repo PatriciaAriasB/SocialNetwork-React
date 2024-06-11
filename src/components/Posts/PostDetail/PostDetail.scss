@@ -77,15 +77,16 @@
 
       .comment-button {
         padding: 8px 15px;
-        background-color: #3897f0;
-        color: white;
+        background-color: #ddd;
+        color: black;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        border-color: #ddd;
       }
 
       .comment-button:hover {
-        background-color: #3578e5;
+        background-color: #bcb6b6;
       }
     }
   }
@@ -98,12 +99,12 @@
   position: relative;
   width: 18rem;
   height: 8rem;
-  background: #29292c;
+  background: #f8f8f8;
   border-radius: 1rem;
   overflow: hidden;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 16px;
-  --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+  --gradient: linear-gradient(to bottom, #333, #666, #333);
   --color: #32a6ff
 }
 
@@ -132,7 +133,7 @@
 }
 
 .notititle {
-  color: var(--color);
+  color: black;
   padding: 0.65rem 0.25rem 0.4rem 1.25rem;
   font-weight: 500;
   font-size: 1.1rem;
@@ -145,7 +146,7 @@
 }
 
 .notibody {
-  color: #99999d;
+  color: black;
   padding: 0 1.25rem;
   transition: transform 300ms ease;
   z-index: 5;
