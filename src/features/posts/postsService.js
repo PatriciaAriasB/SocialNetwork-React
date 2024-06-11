@@ -61,6 +61,36 @@ const deletePost = async (id) => {
   }
 };
 
+const deleteComment = async (id) => {
+  const token = localStorage.getItem('token') || null;
+  try {
+    const res = await axios.delete(`${API_URL}/comments/id/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    throw error;
+  }
+};
+
+const updateComment = async (postId, data) => {
+  const token = localStorage.getItem('token') || null;
+  try {
+    const res = await axios.put(`${API_URL}/comments/id/${postId}`, data, {
+      headers: {
+        Authorization: token
+      }
+    });
+    return res.data;
+  } catch (error) {
+    console.error(`Error to update comment with id : ${postId}:`, error);
+    throw error;
+  }
+};
+
 const like = async (postId) => {
   const token = localStorage.getItem('token') || null;
   try {
@@ -98,7 +128,9 @@ const postsService = {
   like,
   dislike, 
   addComment,
-  deletePost
+  deletePost,
+  deleteComment,
+  updateComment
 };
 
 export default postsService;

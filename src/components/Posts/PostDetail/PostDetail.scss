@@ -152,7 +152,17 @@
   z-index: 5;
 }
 
-.notification:hover .notibody {
+.notifooter {
+  color: black;
+  padding: 0 1.25rem;
+  margin: 10px;
+  transition: transform 300ms ease;
+  z-index: 5;
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+.notification:hover .notibody .notifooter {
   transform: translateX(0.25rem)
 }
 
