@@ -60,6 +60,20 @@ const deletePost = async (id) => {
     throw error;
   }
 };
+const deletePostAsAdmin = async (id) => {
+  const token = localStorage.getItem('token') || null;
+  try {
+    const res = await axios.delete(`${API_URL}/posts/admin/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    throw error;
+  }
+};
 
 const deleteComment = async (id) => {
   const token = localStorage.getItem('token') || null;
@@ -75,6 +89,8 @@ const deleteComment = async (id) => {
     throw error;
   }
 };
+
+
 
 const updateComment = async (form) => {
   const token = localStorage.getItem('token') || null;
@@ -131,7 +147,8 @@ const postsService = {
   addComment,
   deletePost,
   deleteComment,
-  updateComment
+  updateComment,
+  deletePostAsAdmin
 };
 
 export default postsService;
