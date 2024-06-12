@@ -27,8 +27,8 @@ const Header = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    setSearchText('');
     navigate(`/search/${searchText}`);
+    setSearchText('');
   };
 
   return (

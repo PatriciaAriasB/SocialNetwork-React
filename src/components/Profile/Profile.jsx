@@ -60,15 +60,16 @@ const Profile = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('text', text);
         if (image) {
             formData.append('image', image);
         }
-        dispatch(createPost(formData));
+        await dispatch(createPost(formData));
         setFormPost(initialFormState);
+        dispatch(loged());
     };
 
     const [file, setFile] = useState(null);
@@ -82,12 +83,14 @@ const Profile = () => {
         if (!file) return;
         const formData = new FormData();
         formData.append('profilePic', file);
-        dispatch(profilePicture(formData))
+        await dispatch(profilePicture(formData))
+        dispatch(loged());
         onClose()
     }
 
-    const delPost = (id) => {
-        dispatch(deletePost(id))
+    const delPost = async (id) => {
+        await dispatch(deletePost(id))
+        dispatch(loged());
     }
 
     const setShowDeleteButtons = () => {
@@ -128,17 +131,17 @@ const Profile = () => {
                         </div>
                     </div>
                     <p className='profileButtons'>
-                        <button class="pushable createPost" onClick={handleShowCreatePost}>
-                            <span class="shadow"></span>
-                            <span class="edge"></span>
-                            <span class="front">
+                        <button className="pushable createPost" onClick={handleShowCreatePost}>
+                            <span className="shadow"></span>
+                            <span className="edge"></span>
+                            <span className="front">
                                 Create post
                             </span>
                         </button>
-                        <button class="pushable deletePost" onClick={setShowDeleteButtons}>
-                            <span class="shadow"></span>
-                            <span class="edge"></span>
-                            <span class="front">
+                        <button className="pushable deletePost" onClick={setShowDeleteButtons}>
+                            <span className="shadow"></span>
+                            <span className="edge"></span>
+                            <span className="front">
                                 <FaRegTrashAlt />
                             </span>
                         </button>

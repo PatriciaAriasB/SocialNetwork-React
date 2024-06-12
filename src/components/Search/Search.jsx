@@ -23,22 +23,17 @@ const Search = () => {
     const userLogged = JSON.parse(localStorage.getItem('user'));
     const user = useSelector((state) => state.auth.findUser);
 
-    if(user._id === userLogged._id){
-        navigate("/profile")
-    }
-
     useEffect(() => {
         dispatch(getUserByName(name));
     }, [dispatch, name]);
 
-
-    if (status === "loading") {
-        return <div>loading ...</div>
-    }else if (!user) {
+    if(!user) {
         return <NotFound />
     }
 
-    
+    if(user._id === userLogged._id){
+        navigate("/profile")
+    }
 
     return (
         <div className="profile">
