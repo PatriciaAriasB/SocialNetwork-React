@@ -15,7 +15,7 @@ const getAllPosts = async () => {
 const addComment = async (postId, comment ) => {
   const token = localStorage.getItem('token') || null;
   const response = await axios.post(`${API_URL}/comments/id/${postId}`, { text: comment },{
-    headers: {
+        headers: {
       Authorization: token
     }});
   return response.data;
