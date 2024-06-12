@@ -74,9 +74,16 @@ export const deleteComment = createAsyncThunk("posts/deleteComment", async ( id 
   }
 });
 
-export const updateComment = createAsyncThunk("posts/updateComment", async (form) => {
+export const updateComment = createAsyncThunk("posts/updateComment", async (id, data) => {
   try {
-    return await postsService.updateComment(form);
+    return await postsService.updateComment(id);
+  } catch (error) {
+    throw error;
+  }
+});
+export const deletePostAsAdmin = createAsyncThunk("posts/deletePostAsAdmin", async (id) => {
+  try {
+    return await postsService.deletePostAsAdmin(id);
   } catch (error) {
     throw error;
   }
@@ -128,6 +135,14 @@ export const postsSlice = createSlice({
       .addCase(dislike.rejected, (state, action) => {
         state.error = action.error.message;
       })
+      .addCase(deletePostAsAdmin.fulfilled, (state, action) => {
+        state.posts = state.posts.map(post =>  
+         post._id === action.payload.post._id ? action.payload.post : post
+        );
+      })
+      .addCase(deletePostAsAdmin.rejected, (state, action) => {
+        state.error = action.error.message;
+      });
   },
 });
 

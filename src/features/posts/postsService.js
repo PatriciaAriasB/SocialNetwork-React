@@ -12,12 +12,13 @@ const getAllPosts = async () => {
   }
 };
 
-const addComment = async (postId, comment ) => {
+const addComment = async (postId, comment) => {
   const token = localStorage.getItem('token') || null;
-  const response = await axios.post(`${API_URL}/comments/id/${postId}`, { text: comment },{
-        headers: {
+  const response = await axios.post(`${API_URL}/comments/id/${postId}`, { text: comment }, {
+    headers: {
       Authorization: token
-    }});
+    }
+  });
   return response.data;
 };
 
@@ -60,6 +61,7 @@ const deletePost = async (id) => {
     throw error;
   }
 };
+
 const deletePostAsAdmin = async (id) => {
   const token = localStorage.getItem('token') || null;
   try {
@@ -70,10 +72,11 @@ const deletePostAsAdmin = async (id) => {
     });
     return res.data;
   } catch (error) {
-    console.error("Error deleting post:", error);
+    console.error("Error deleting post as admin:", error);
     throw error;
   }
 };
+
 
 const deleteComment = async (id) => {
   const token = localStorage.getItem('token') || null;
@@ -90,20 +93,18 @@ const deleteComment = async (id) => {
   }
 };
 
-
-
 const updateComment = async (form) => {
   const token = localStorage.getItem('token') || null;
-  const text = form.text
+  const text = form.text;
   try {
-    const res = await axios.put(`${API_URL}/comments/id/${form.id}`, {text}, {
+    const res = await axios.put(`${API_URL}/comments/id/${form.id}`, { text }, {
       headers: {
         Authorization: token
       }
     });
     return res.data;
   } catch (error) {
-    console.error(`Error to update comment with id : ${form.id}:`, error);
+    console.error(`Error updating comment with id : ${form.id}:`, error);
     throw error;
   }
 };
@@ -143,12 +144,12 @@ const postsService = {
   getById,
   createPost,
   like,
-  dislike, 
+  dislike,
   addComment,
   deletePost,
+  deletePostAsAdmin,
   deleteComment,
-  updateComment,
-  deletePostAsAdmin
+  updateComment
 };
 
 export default postsService;

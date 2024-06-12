@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts, deletePost } from '../../features/posts/postsSlice';
+import { getAllPosts, deletePostAsAdmin } from '../../features/posts/postsSlice';
 import { Button } from '@chakra-ui/react';
 import { FaRegTrashAlt } from "react-icons/fa";
 import './Admin.scss';
@@ -14,7 +14,7 @@ const Admin = () => {
     }, [dispatch]);
 
     const handleDeletePost = (id) => {
-        dispatch(deletePost(id));
+        dispatch(deletePostAsAdmin(id));
     };
 
     if (isLoading) {
