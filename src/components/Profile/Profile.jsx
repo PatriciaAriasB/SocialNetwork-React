@@ -23,10 +23,6 @@ const Profile = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
 
-    useEffect(() => {
-        dispatch(loged());
-    }, []);
-
     const initialFormState = {
         text: "",
         image: null,
@@ -43,6 +39,10 @@ const Profile = () => {
 
     const handleShowEditPost = () => setShowEditPost(true);
     const handleCloseEditPost = () => setShowEditPost(false);
+
+    useEffect(() => {
+        dispatch(loged());
+    }, []);
 
     const handleChange = (e) => {
         e.preventDefault();
