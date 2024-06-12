@@ -130,6 +130,9 @@ export const authSlice = createSlice({
       .addCase(getUserByName.fulfilled, (state, action) => {
         state.findUser = action.payload;
       })
+      .addCase(getUserByName.pending, (state, action) => {
+        state.findUser = null;
+      })
   },
 });
 

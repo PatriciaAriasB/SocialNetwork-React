@@ -26,8 +26,11 @@ const Post = () => {
     };
 
     if (isLoading) {
-        return <div className="custom-loader"></div>
-            ;
+        return (
+            <div className="custom-loader-container">
+                <div className="custom-loader"></div>
+            </div>
+        );
     }
 
     const searchUser = (user) => {

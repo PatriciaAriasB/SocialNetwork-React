@@ -76,17 +76,18 @@ const deleteComment = async (id) => {
   }
 };
 
-const updateComment = async (postId, data) => {
+const updateComment = async (form) => {
   const token = localStorage.getItem('token') || null;
+  const text = form.text
   try {
-    const res = await axios.put(`${API_URL}/comments/id/${postId}`, data, {
+    const res = await axios.put(`${API_URL}/comments/id/${form.id}`, {text}, {
       headers: {
         Authorization: token
       }
     });
     return res.data;
   } catch (error) {
-    console.error(`Error to update comment with id : ${postId}:`, error);
+    console.error(`Error to update comment with id : ${form.id}:`, error);
     throw error;
   }
 };

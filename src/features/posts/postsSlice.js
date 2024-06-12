@@ -74,9 +74,9 @@ export const deleteComment = createAsyncThunk("posts/deleteComment", async ( id 
   }
 });
 
-export const updateComment = createAsyncThunk("posts/updateComment", async (id, data) => {
+export const updateComment = createAsyncThunk("posts/updateComment", async (form) => {
   try {
-    return await postsService.updateComment(id);
+    return await postsService.updateComment(form);
   } catch (error) {
     throw error;
   }
