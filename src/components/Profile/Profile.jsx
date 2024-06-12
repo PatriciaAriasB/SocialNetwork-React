@@ -91,9 +91,9 @@ const Profile = () => {
     }
 
     const setShowDeleteButtons = () => {
-        if(!showForDeletePost){
+        if (!showForDeletePost) {
             setshowForDeletePost(true)
-        }else{
+        } else {
             setshowForDeletePost(false)
         }
     }
@@ -127,11 +127,24 @@ const Profile = () => {
                             </span>
                         </div>
                     </div>
+                    <p className='profileButtons'>
+                        <button class="pushable createPost" onClick={handleShowCreatePost}>
+                            <span class="shadow"></span>
+                            <span class="edge"></span>
+                            <span class="front">
+                                Create post
+                            </span>
+                        </button>
+                        <button class="pushable deletePost" onClick={setShowDeleteButtons}>
+                            <span class="shadow"></span>
+                            <span class="edge"></span>
+                            <span class="front">
+                                <FaRegTrashAlt />
+                            </span>
+                        </button>
+                    </p>
                 </div>
-                <p className='profileButtons'>
-                    <button className='createPost' onClick={handleShowCreatePost}>Create post</button>
-                    <button className='deletePost' onClick={setShowDeleteButtons}><FaRegTrashAlt /></button>
-                </p>
+
                 <Modal show={showCreatePost} onHide={handleCloseCreatePost}>
                     <Modal.Header closeButton>
                         <Modal.Title>Post</Modal.Title>

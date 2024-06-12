@@ -8,6 +8,7 @@ import NotFound from "../NotFound/NotFound";
 const Search = () => {
     const { name } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const status = useSelector((state) => state.auth.findUser);
 
     const followUser = async (userId) => {
@@ -22,9 +23,14 @@ const Search = () => {
     const userLogged = JSON.parse(localStorage.getItem('user'));
     const user = useSelector((state) => state.auth.findUser);
 
+    if(user._id === userLogged._id){
+        navigate("/profile")
+    }
+
     useEffect(() => {
         dispatch(getUserByName(name));
     }, [dispatch, name]);
+
 
     if (status === "loading") {
         return <div>loading ...</div>
