@@ -8,13 +8,16 @@ import NotFound from "../NotFound/NotFound";
 const Search = () => {
     const { name } = useParams();
     const dispatch = useDispatch();
+    const status = useSelector((state) => state.auth.findUser);
 
-    const followUser = (userId) => {
-        dispatch(follow(userId));
+    const followUser = async (userId) => {
+        await dispatch(follow(userId));
+        dispatch(getUserByName(name));
     };
 
-    const unfollowUser = (userId) => {
-        dispatch(unfollow(userId));
+    const unfollowUser = async (userId) => {
+        await dispatch(unfollow(userId));
+        dispatch(getUserByName(name));
     };
     const userLogged = JSON.parse(localStorage.getItem('user'));
     const user = useSelector((state) => state.auth.findUser);
@@ -23,9 +26,13 @@ const Search = () => {
         dispatch(getUserByName(name));
     }, [dispatch, name]);
 
-    if (!user) {
+    if (status === "loading") {
+        return <div>loading ...</div>
+    }else if (!user) {
         return <NotFound />
     }
+
+    
 
     return (
         <div className="profile">
@@ -48,7 +55,7 @@ const Search = () => {
                     {user._id !== userLogged._id && !user.followers.some(follw => follw === userLogged._id) && (
                         <p className="follow" onClick={() => followUser(user._id)}>Seguir</p>
                     )}
-                    {user._id !== userLogged._id && (
+                    {user._id !== userLogged._id && user.followers.some(follw => follw === userLogged._id) && (
                         <p className="follow" onClick={() => unfollowUser(user._id)}>Dejar de seguir</p>
                     )}
                 </div>

@@ -12,7 +12,7 @@ const initialState = {
   isSuccess: false,
   message: "",
   findUser: null,
-  findUserById: null
+  findUserById: null,
 };
 
 
@@ -131,7 +131,11 @@ export const authSlice = createSlice({
         state.findUser = action.payload;
       })
       .addCase(getUserByName.pending, (state, action) => {
+        state.status = "loading"
+      })
+      .addCase(getUserByName.rejected, (state, action) => {
         state.findUser = null;
+        state.status = "rejected"
       })
   },
 });
