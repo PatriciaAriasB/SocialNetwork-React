@@ -1,9 +1,53 @@
-
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllPosts, deletePost } from '../../features/posts/postsSlice';
+import { Button } from '@chakra-ui/react';
+import { FaRegTrashAlt } from "react-icons/fa";
+import './Admin.scss';
 
 const Admin = () => {
-  return (
-    <div>Admin</div>
-  )
-}
+    const dispatch = useDispatch();
+    const { posts, isLoading, error } = useSelector((state) => state.posts);
 
-export default Admin
+    useEffect(() => {
+        dispatch(getAllPosts());
+    }, [dispatch]);
+
+    const handleDeletePost = (id) => {
+        dispatch(deletePost(id));
+    };
+
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
+
+    return (
+        <div className="admin">
+            <h1>Admin Panel</h1>
+            <div className="admin-posts">
+                {posts.map((post) => (
+                    <div key={post._id} className="admin-post">
+                        <img
+                            src={`http://localhost:8080/public/posts/${post.image}`}
+                            alt="Post"
+                            className="admin-post-image"
+                        />
+                        <p className="admin-post-text">{post.text}</p>
+                        <Button
+                            colorScheme="red"
+                            onClick={() => handleDeletePost(post._id)}
+                        >
+                            <FaRegTrashAlt /> Delete
+                        </Button>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default Admin;

@@ -1,0 +1,31 @@
+.admin {
+    padding: 20px;
+}
+
+.admin-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.admin-post {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.admin-post-image {
+    width: 100%;
+    height: auto;
+}
+
+.admin-post-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.admin-post button {
+    display: block;
+    width: 100%;
+}
