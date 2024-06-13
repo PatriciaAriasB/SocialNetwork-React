@@ -63,7 +63,7 @@ const Search = () => {
             </div>
             <div className="profile-posts">
                 {user.postsId.map((post) => (
-                    <div key={post._id} className="profile-post">
+                    <div key={post._id} className="profile-post image-container">
                         <img src={"http://localhost:8080/public/posts/" + (post.image || "https://via.placeholder.com/150")} alt="Post" className="post-image" />
                         <p className="post-text">{post.text}</p>
                     </div>
