@@ -13,6 +13,7 @@ import PrivateZone from "./guards/PrivateZone";
 import AdminZone from "./guards/AdminZone";
 import Admin from "./components/Admin/Admin";
 import NotFound from "./components/NotFound/NotFound";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }

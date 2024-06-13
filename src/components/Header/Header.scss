@@ -20,17 +20,16 @@
 }
 
 .navbar-brand {
-  color: #fff; /* Color del texto del logo */
-  font-family: 'Poppins', sans-serif; /* Utiliza la fuente Poppins */
-  font-weight: 500; /* Aumenta el grosor de la fuente */
-  font-size: 24px; /* Tamaño de fuente */
-  display: flex; /* Permitirá alinear verticalmente el logo y el texto */
-  align-items: center; /* Alinea verticalmente el logo y el texto */
+  color: #fff;
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 500; 
+  font-size: 24px; 
+  display: flex; 
+  align-items: center; 
 }
 
 .navbar-brand img {
-  // width: 30px; /* Define el tamaño del logo */
-  margin-right: 10px; /* Añade un poco de espacio entre el logo y el texto */
+  margin-right: 10px; 
 }
 
 .navbar-nav .nav-link {
@@ -59,20 +58,3 @@
   width: 300px;
 }
 
-.form-control {
-  border: 1px solid #007bff; /* Tono de azul usado en los botones de Bootstrap */
-  border-right: none;
-  border-radius: 0.25rem 0 0 0.25rem;
-}
-
-.btn-outline-light {
-  border: 1px solid #007bff; /* Tono de azul usado en los botones de Bootstrap */
-  border-left: none;
-  border-radius: 0 0.25rem 0.25rem 0;
-}
-.navbar-nav {
-  display: flex;
-  
-  justify-content: flex-end; /* Para alinear los elementos a la derecha */
-  flex-grow: 1; /* Para que el contenedor ocupe todo el espacio disponible */
-}

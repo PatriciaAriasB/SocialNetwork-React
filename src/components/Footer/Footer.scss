@@ -1,0 +1,21 @@
+.footer {
+    background-color: #bd2c2c;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1);
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-text {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+}
