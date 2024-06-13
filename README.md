@@ -24,10 +24,10 @@ Esta aplicación de Red Social en React proporciona una plataforma donde los usu
 ## Funcionalidades
 
 - **Registro y Login:** Los usuarios pueden registrarse e iniciar sesión de manera segura.
-- **Publicaciones:** Los usuarios pueden crear, editar y eliminar publicaciones.
-- **Comentarios:** Funcionalidad completa de CRUD para los comentarios en las publicaciones.
+- **Publicaciones:** Los usuarios pueden crear y eliminar publicaciones.
+- **Comentarios:** Parte de funcionalidad de CRUD para los comentarios en las publicaciones.
 - **Perfil de Usuario:** Vista del perfil del usuario con detalles personales y listado de publicaciones.
-- **Seguimiento:** Los usuarios pueden seguir a otros usuarios y gestionar sus seguidores.
+- **Seguimiento:** Los usuarios pueden seguir a otros usuarios.
 - **Interacción:** Posibilidad de dar likes a las publicaciones y comentarios.
 - **Diseño Responsivo:** La aplicación se adapta correctamente a diferentes tamaños de pantalla.
 
