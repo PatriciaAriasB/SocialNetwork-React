@@ -1,13 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
 .navbar {
-  background: linear-gradient(to right, #333, #666, #333); /* Define el degradado entre grises y negro */
+  // background-color: #111111; /* Cambia el color de fondo */
+  padding: 5px 30px; /* Ajusta el espacio alrededor */
+  background: linear-gradient(to right, #000000, #333, #111); /* Degradado de negro a gris en el centro */
+  
 }
 
-.navbar-brand,
-.navbar-nav .nav-link,
-.form-control,
-.btn-outline-light {
+.container {
+  width: 100%; /* Ajusta el ancho del contenedor a 100% */
+  max-width: 1200px; /* Ajusta el ancho máximo del contenedor */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+.logo-img1 {
+  width: 50px;
+}
+.logo-img {
+  width: 30px;
+}
+
+.navbar-brand {
+  color: #fff; /* Color del texto del logo */
+  font-family: 'Poppins', sans-serif; /* Utiliza la fuente Poppins */
+  font-weight: 500; /* Aumenta el grosor de la fuente */
+  font-size: 24px; /* Tamaño de fuente */
+  display: flex; /* Permitirá alinear verticalmente el logo y el texto */
+  align-items: center; /* Alinea verticalmente el logo y el texto */
+}
+
+.navbar-brand img {
+  // width: 30px; /* Define el tamaño del logo */
+  margin-right: 10px; /* Añade un poco de espacio entre el logo y el texto */
+}
+
+.navbar-nav .nav-link {
   color: #fff; /* Cambia el color del texto a blanco */
   font-family: 'Poppins', sans-serif; /* Utiliza la fuente Poppins */
   font-size: 16px; /* Tamaño de fuente */
@@ -16,15 +42,12 @@
   transition: all 0.3s ease; /* Transición suave */
 }
 
-.navbar-brand:hover,
-.navbar-nav .nav-link:hover,
-.btn-outline-light:hover {
-  color: #fff; /* Cambia el color del texto a blanco al pasar el cursor */
-  text-decoration: none; /* Elimina el subrayado al pasar el cursor */
-  opacity: 0.8; /* Reduce ligeramente la opacidad al pasar el cursor */
+.navbar-nav .nav-link:hover {
+  color: #f34343; /* Cambia el color del texto a un tono más claro al pasar el cursor */
 }
-
-
+.navbar-nav .nav-item {
+  margin-right: 135px; /* Ajusta el margen entre los enlaces */
+}
 .form-inline {
   display: flex;
   justify-content: flex-end;
@@ -37,13 +60,19 @@
 }
 
 .form-control {
-  border: 1px solid #ccc;
+  border: 1px solid #007bff; /* Tono de azul usado en los botones de Bootstrap */
   border-right: none;
   border-radius: 0.25rem 0 0 0.25rem;
 }
 
 .btn-outline-light {
-  border: 1px solid #ccc;
+  border: 1px solid #007bff; /* Tono de azul usado en los botones de Bootstrap */
   border-left: none;
   border-radius: 0 0.25rem 0.25rem 0;
+}
+.navbar-nav {
+  display: flex;
+  
+  justify-content: flex-end; /* Para alinear los elementos a la derecha */
+  flex-grow: 1; /* Para que el contenedor ocupe todo el espacio disponible */
 }

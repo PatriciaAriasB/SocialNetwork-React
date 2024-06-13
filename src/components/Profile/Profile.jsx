@@ -70,6 +70,7 @@ const Profile = () => {
         await dispatch(createPost(formData));
         setFormPost(initialFormState);
         dispatch(loged());
+       
     };
 
     const [file, setFile] = useState(null);

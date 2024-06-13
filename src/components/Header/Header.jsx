@@ -32,17 +32,17 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#111111' }}>
       <div className="container">
-        <Link className="navbar-brand" to="/">M&P</Link>
+        <Link className="navbar-brand" to="/">
+          <img src="logo_TB-transparent.png" alt="Logo" className="logo-img" />
+           <img src="MP2.png" alt="Logo" className="logo-img1" />
+        </Link>
         <button className="navbar-toggler" type="button" onClick={toggleNavbar}>
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
-          <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
-            </li>
+          <ul className="navbar-nav mx-auto">
             {user ? (
               <>
                 {user.role === "admin" && (
@@ -83,3 +83,4 @@ const Header = () => {
 };
 
 export default Header;
+

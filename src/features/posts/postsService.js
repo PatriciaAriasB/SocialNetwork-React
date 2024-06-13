@@ -64,12 +64,15 @@ const deletePost = async (id) => {
 
 const deletePostAsAdmin = async (id) => {
   const token = localStorage.getItem('token') || null;
+  console.log("token",token);
   try {
     const res = await axios.delete(`${API_URL}/posts/admin/${id}`, {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: token
       }
     });
+    console.log(res.data);
+
     return res.data;
   } catch (error) {
     console.error("Error deleting post as admin:", error);
