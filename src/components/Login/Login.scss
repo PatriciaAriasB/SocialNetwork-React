@@ -32,13 +32,13 @@
       .ant-btn-primary {
         width: 100%;
         height: 40px;
-        background-color: #1890ff;
-        border-color: #1890ff;
+        background-color: #141414;
+        border-color: #1b1b1b;
         border-radius: 4px;
   
         &:hover {
-          background-color: #40a9ff;
-          border-color: #40a9ff;
+          background-color: hwb(240 27% 73%);
+          border-color: hwb(240 27% 73%);
         }
       }
     }

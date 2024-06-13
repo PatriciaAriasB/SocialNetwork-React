@@ -82,7 +82,7 @@ const Register = () => {
             <Input.Password placeholder="Repeat Password" value={password2} onChange={onChange} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+            <Button type="primary" htmlType="submit" style={{ width: '100%', backgroundColor: 'black', borderColor: 'black' }}>
               Register
             </Button>
           </Form.Item>

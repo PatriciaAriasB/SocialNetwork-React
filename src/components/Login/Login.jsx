@@ -15,7 +15,6 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
 
   useEffect(() => {
     if (isSuccess) {
@@ -94,7 +93,7 @@ const Login = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" className="black-button">
             Submit
           </Button>
         </Form.Item>

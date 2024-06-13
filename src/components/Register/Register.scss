@@ -3,17 +3,27 @@
     text-align: center;
     margin-top: 1rem;
     font-size: 16px;
-    color: #154674;
+    color: #286299;
     transition: color 0.3s ease;
-  }
-  
-  .linkLogin:hover {
-    color: #40a9ff;
   }
   
   @media (max-width: 768px) {
     .linkLogin {
       font-size: 14px;
+
     }
   }
+  .black-button {
+    background-color: black;
+    border-color: black;
+    color: white;
+    &:hover {
+      background-color: #333; // Gris oscuro
+      border-color: #333; // Gris oscuro
+    }
+  }
+    
+  
+
+ 
   

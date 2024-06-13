@@ -41,8 +41,9 @@ const Admin = () => {
                         <Button
                             colorScheme="red"
                             onClick={() => handleDeletePost(post._id)}
+                            className="admin-post-button"
                         >
-                            <FaRegTrashAlt /> Delete
+                            <FaRegTrashAlt />
                         </Button>
                     </div>
                 ))}
