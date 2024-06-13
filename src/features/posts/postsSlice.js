@@ -81,6 +81,7 @@ export const updateComment = createAsyncThunk("posts/updateComment", async (id, 
     throw error;
   }
 });
+
 export const deletePostAsAdmin = createAsyncThunk("posts/deletePostAsAdmin", async (id) => {
   try {
     return await postsService.deletePostAsAdmin(id);
@@ -136,9 +137,9 @@ export const postsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(deletePostAsAdmin.fulfilled, (state, action) => {
-        state.posts = state.posts.map(post =>  
-         post._id === action.payload.post._id ? action.payload.post : post
-        );
+        // state.posts = state.posts.map(post =>  
+        //  post._id === action.payload.post._id ? action.payload.post : post
+        // );
       })
       .addCase(deletePostAsAdmin.rejected, (state, action) => {
         state.error = action.error.message;

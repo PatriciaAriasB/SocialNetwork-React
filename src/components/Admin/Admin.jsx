@@ -11,10 +11,11 @@ const Admin = () => {
 
     useEffect(() => {
         dispatch(getAllPosts());
-    }, [dispatch]);
+    }, [dispatch ]);
 
-    const handleDeletePost = (id) => {
-        dispatch(deletePostAsAdmin(id));
+    const handleDeletePost = async(id) => {
+        await dispatch(deletePostAsAdmin(id));
+        dispatch(getAllPosts());
     };
 
     if (isLoading) {
