@@ -1,6 +1,7 @@
 # Red Social en React
 
-![Logo de la Red Social](public\MP.png)
+![MP](https://github.com/PatriciaAriasB/SocialNetwork-React/assets/162701100/241d8ab5-7f93-4627-bd9f-6e01a043151f)
+
 
 Este proyecto es una aplicación de Red Social desarrollada en React, que cumple con todos los requisitos establecidos para un proyecto completo.
 
@@ -32,10 +33,11 @@ Esta aplicación de Red Social en React proporciona una plataforma donde los usu
 - **Diseño Responsivo:** La aplicación se adapta correctamente a diferentes tamaños de pantalla.
 
 ## Capturas de Pantalla
-![Pantallas](\public\captur1.png)
-![Pantallas](\public\captur2.png)
-![Pantallas](\public\captur3.png)
 
+![captur1](https://github.com/PatriciaAriasB/SocialNetwork-React/assets/162701100/bf0243c9-4dde-423c-9de3-c3cf25318bf6)
+
+![captur2](https://github.com/PatriciaAriasB/SocialNetwork-React/assets/162701100/001438df-2ba2-45dd-a694-d6c15630af1e)
+![captur3](https://github.com/PatriciaAriasB/SocialNetwork-React/assets/162701100/23d8d0f4-ffde-495a-b5f4-52d16e91157c)
 
 ## Tecnologías utilizadas
 
@@ -51,3 +53,7 @@ Esta aplicación de Red Social en React proporciona una plataforma donde los usu
 
    ```bash
    git clone https://github.com/tu-usuario/red-social-react.git
+
+## Autores
+
+Patricia Arias y Manel Piernas
