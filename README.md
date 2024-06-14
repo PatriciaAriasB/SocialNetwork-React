@@ -32,9 +32,9 @@ Esta aplicación de Red Social en React proporciona una plataforma donde los usu
 - **Diseño Responsivo:** La aplicación se adapta correctamente a diferentes tamaños de pantalla.
 
 ## Capturas de Pantalla
-![Pantallas](public\captur1.png)
-![Pantallas](public\captur2.png)
-![Pantallas](public\captur3.png)
+![Pantallas](\public\captur1.png)
+![Pantallas](\public\captur2.png)
+![Pantallas](\public\captur3.png)
 
 
 ## Tecnologías utilizadas
